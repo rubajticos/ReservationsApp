@@ -2,18 +2,18 @@ package com.michalrubajczyk.reservations.security;
 
 import com.michalrubajczyk.reservations.entity.User;
 import com.michalrubajczyk.reservations.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class DefaultUserDetailsService implements UserDetailsService {
 
+    @Autowired
     private UserRepository userRepository;
 
-    public DefaultUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public DefaultUserDetailsService() {
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
