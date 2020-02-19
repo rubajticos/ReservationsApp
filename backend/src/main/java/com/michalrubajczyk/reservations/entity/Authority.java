@@ -19,4 +19,7 @@ public class Authority {
     public Authority(AuthorityType name) {
         this.name = name;
     }
+
+    public Authority() {
+    }
 }
