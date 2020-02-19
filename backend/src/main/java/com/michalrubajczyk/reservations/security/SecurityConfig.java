@@ -1,6 +1,7 @@
 package com.michalrubajczyk.reservations.security;
 
 import com.michalrubajczyk.reservations.repository.UserRepository;
+import com.michalrubajczyk.reservations.service.DefaultUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

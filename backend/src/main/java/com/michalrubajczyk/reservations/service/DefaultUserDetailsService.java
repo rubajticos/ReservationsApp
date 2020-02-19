@@ -1,7 +1,8 @@
-package com.michalrubajczyk.reservations.security;
+package com.michalrubajczyk.reservations.service;
 
 import com.michalrubajczyk.reservations.entity.User;
 import com.michalrubajczyk.reservations.repository.UserRepository;
+import com.michalrubajczyk.reservations.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
