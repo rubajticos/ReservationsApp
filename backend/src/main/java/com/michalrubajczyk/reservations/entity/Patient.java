@@ -23,4 +23,9 @@ public class Patient implements Serializable {
 
     public Patient() {
     }
+
+    public void addUser(User user) {
+        this.user = user;
+        user.setPatient(this);
+    }
 }
