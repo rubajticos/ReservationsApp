@@ -31,4 +31,8 @@ public class User implements Serializable {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_id")})
     private Set<Authority> authorities = new HashSet<>();
+
+    @OneToOne(mappedBy = "user")
+    private Patient patient;
+
 }
