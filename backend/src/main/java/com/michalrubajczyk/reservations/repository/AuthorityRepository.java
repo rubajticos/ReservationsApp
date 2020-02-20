@@ -2,8 +2,10 @@ package com.michalrubajczyk.reservations.repository;
 
 import com.michalrubajczyk.reservations.entity.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface AuthorityRepository extends JpaRepository<Long, Authority> {
+@Repository
+public interface AuthorityRepository extends JpaRepository<Authority, Long> {
 
     Authority findByName(String name);
 }
