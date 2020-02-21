@@ -41,7 +41,7 @@ class PatientMapperTest {
 
     private void assertPatientDTO(PatientDTO patientDTO, Patient patient) {
         assertEquals(patientDTO.getId(), patient.getId());
-        assertEquals(patientDTO.getUserName(), patient.getFirstName());
+        assertEquals(patientDTO.getFirstName(), patient.getFirstName());
         assertEquals(patientDTO.getLastName(), patient.getLastName());
         assertEquals(patientDTO.getPhoneNumber(), patient.getPhoneNumber());
     }
@@ -68,7 +68,7 @@ class PatientMapperTest {
 
     private void assertPatient(Patient patient, PatientDTO patientDTO) {
         assertEquals(patient.getId(), patientDTO.getId());
-        assertEquals(patient.getFirstName(), patientDTO.getUserName());
+        assertEquals(patient.getFirstName(), patientDTO.getFirstName());
         assertEquals(patient.getLastName(), patientDTO.getLastName());
         assertEquals(patient.getPhoneNumber(), patientDTO.getPhoneNumber());
     }
@@ -86,7 +86,7 @@ class PatientMapperTest {
     private PatientDTO generatePatientDTO() {
         PatientDTO patientDTO = new PatientDTO();
         patientDTO.setId(1L);
-        patientDTO.setUserName("a");
+        patientDTO.setFirstName("a");
         patientDTO.setLastName("b");
         patientDTO.setPhoneNumber("123456789");
 
@@ -112,7 +112,7 @@ class PatientMapperTest {
         for (int i = 0; i < 10; i++) {
             PatientDTO p = new PatientDTO();
             p.setId((long) i);
-            p.setUserName("a");
+            p.setFirstName("a");
             p.setLastName("b");
             p.setPhoneNumber("123456789");
             patientsDTO.add(p);

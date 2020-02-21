@@ -9,7 +9,7 @@ public class PatientMapper extends BaseMapper<Patient, PatientDTO> {
     public Patient dtoToEntity(PatientDTO dto) {
         Patient patient = new Patient();
         patient.setId(dto.getId());
-        patient.setFirstName(dto.getUserName());
+        patient.setFirstName(dto.getFirstName());
         patient.setLastName(dto.getLastName());
         patient.setPhoneNumber(dto.getPhoneNumber());
 
@@ -20,7 +20,7 @@ public class PatientMapper extends BaseMapper<Patient, PatientDTO> {
     public PatientDTO entityToDto(Patient entity) {
         PatientDTO patientDTO = new PatientDTO();
         patientDTO.setId(entity.getId());
-        patientDTO.setUserName(entity.getFirstName());
+        patientDTO.setFirstName(entity.getFirstName());
         patientDTO.setLastName(entity.getLastName());
         patientDTO.setPhoneNumber(entity.getPhoneNumber());
 
