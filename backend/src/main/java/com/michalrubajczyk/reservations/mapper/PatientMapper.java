@@ -3,10 +3,7 @@ package com.michalrubajczyk.reservations.mapper;
 import com.michalrubajczyk.reservations.dto.PatientDTO;
 import com.michalrubajczyk.reservations.entity.Patient;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class PatientMapper implements Mapper<Patient, PatientDTO> {
+public class PatientMapper extends BaseMapper<Patient, PatientDTO> {
 
     @Override
     public Patient dtoToEntity(PatientDTO dto) {
@@ -20,11 +17,6 @@ public class PatientMapper implements Mapper<Patient, PatientDTO> {
     }
 
     @Override
-    public List<Patient> dtoListToEntityList(List<PatientDTO> dtoList) {
-        return dtoList.stream().map(this::dtoToEntity).collect(Collectors.toList());
-    }
-
-    @Override
     public PatientDTO entityToDto(Patient entity) {
         PatientDTO patientDTO = new PatientDTO();
         patientDTO.setId(entity.getId());
@@ -33,10 +25,5 @@ public class PatientMapper implements Mapper<Patient, PatientDTO> {
         patientDTO.setPhoneNumber(entity.getPhoneNumber());
 
         return patientDTO;
-    }
-
-    @Override
-    public List<PatientDTO> entityListToDtoList(List<Patient> entityList) {
-        return entityList.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 }
