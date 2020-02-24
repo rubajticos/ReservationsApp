@@ -16,6 +16,7 @@ public class Patient implements Serializable {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")

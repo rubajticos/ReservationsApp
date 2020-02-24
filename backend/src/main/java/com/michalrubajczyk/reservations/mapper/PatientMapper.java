@@ -12,6 +12,7 @@ public class PatientMapper extends BaseMapper<Patient, PatientDTO> {
         patient.setFirstName(dto.getFirstName());
         patient.setLastName(dto.getLastName());
         patient.setPhoneNumber(dto.getPhoneNumber());
+        patient.setEmail(dto.getEmail());
 
         return patient;
     }
@@ -23,6 +24,7 @@ public class PatientMapper extends BaseMapper<Patient, PatientDTO> {
         patientDTO.setFirstName(entity.getFirstName());
         patientDTO.setLastName(entity.getLastName());
         patientDTO.setPhoneNumber(entity.getPhoneNumber());
+        patientDTO.setEmail(entity.getEmail());
 
         return patientDTO;
     }

@@ -44,6 +44,7 @@ class PatientMapperTest {
         assertEquals(patientDTO.getFirstName(), patient.getFirstName());
         assertEquals(patientDTO.getLastName(), patient.getLastName());
         assertEquals(patientDTO.getPhoneNumber(), patient.getPhoneNumber());
+        assertEquals(patientDTO.getEmail(), patient.getEmail());
     }
 
     @Test
@@ -71,6 +72,7 @@ class PatientMapperTest {
         assertEquals(patient.getFirstName(), patientDTO.getFirstName());
         assertEquals(patient.getLastName(), patientDTO.getLastName());
         assertEquals(patient.getPhoneNumber(), patientDTO.getPhoneNumber());
+        assertEquals(patient.getEmail(), patientDTO.getEmail());
     }
 
     private Patient generatePatient() {
@@ -79,6 +81,7 @@ class PatientMapperTest {
         patient.setFirstName("a");
         patient.setLastName("b");
         patient.setPhoneNumber("123456789");
+        patient.setEmail("aaa@aaa.com");
 
         return patient;
     }
@@ -89,6 +92,7 @@ class PatientMapperTest {
         patientDTO.setFirstName("a");
         patientDTO.setLastName("b");
         patientDTO.setPhoneNumber("123456789");
+        patientDTO.setEmail("aaa@aaa.com");
 
         return patientDTO;
     }
@@ -101,6 +105,7 @@ class PatientMapperTest {
             p.setFirstName("a");
             p.setLastName("b");
             p.setPhoneNumber("123456789");
+            p.setEmail("aaa@aaa.com");
             patients.add(p);
         }
 
@@ -115,6 +120,7 @@ class PatientMapperTest {
             p.setFirstName("a");
             p.setLastName("b");
             p.setPhoneNumber("123456789");
+            p.setEmail("aaa@aaa.com");
             patientsDTO.add(p);
         }
 
