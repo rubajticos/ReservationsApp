@@ -15,10 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.file.Path;
-import java.util.Collections;
-import java.util.Set;
-
 @Service
 public class RegisterServiceImpl implements RegisterService {
 
@@ -46,9 +42,11 @@ public class RegisterServiceImpl implements RegisterService {
         User user = registerUserMapper.dtoToEntity(userCredentials);
         Patient patient = patientMapper.dtoToEntity(patientDTO);
 
+        Authority authority = authorityRepository.findByName(AuthorityType.ROLE_USER);
+        user.addAuthority(authority);
         user.setPassword(passwordEncodingService.encodeBCrypt(user.getPassword()));
-        patient.addUser(user);
 
+        patient.addUser(user);
         patient = patientRepository.save(patient);
 
         return patient != null;
