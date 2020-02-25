@@ -24,15 +24,10 @@ public class RegisterController {
 
     @PostMapping("/register")
     public ResponseEntity register(@Valid @RequestBody RegistrationDTO registrationData) {
-        boolean result = registerService.register(registrationData);
-
-        if (result)
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .build();
+        registerService.register(registrationData);
 
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.CREATED)
                 .build();
     }
 }

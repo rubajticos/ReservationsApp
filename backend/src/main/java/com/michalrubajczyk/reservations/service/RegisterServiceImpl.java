@@ -35,7 +35,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     @Transactional
-    public boolean register(RegistrationDTO registrationData) {
+    public void register(RegistrationDTO registrationData) {
         UserCredentialsDTO userCredentials = registrationData.getUserCredentialsDTO();
         PatientDTO patientDTO = registrationData.getPatientDTO();
 
@@ -46,10 +46,7 @@ public class RegisterServiceImpl implements RegisterService {
         user.addAuthority(authority);
         user.setPassword(passwordEncodingService.encodeBCrypt(user.getPassword()));
 
-
         patient.addUser(user);
-        patient = patientRepository.save(patient);
-
-        return patient != null;
+        patientRepository.save(patient);
     }
 }
