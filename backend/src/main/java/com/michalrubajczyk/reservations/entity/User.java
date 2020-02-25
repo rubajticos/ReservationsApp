@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -31,4 +32,28 @@ public class User implements Serializable {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_id")})
     private Set<Authority> authorities = new HashSet<>();
+
+    @OneToOne(mappedBy = "user")
+    private Patient patient;
+
+    public void addAuthority(Authority authority) {
+        authorities.add(authority);
+        authority.getUsers().add(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id) &&
+                username.equals(user.username) &&
+                password.equals(user.password) &&
+                Objects.equals(dateCreated, user.dateCreated);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, dateCreated);
+    }
 }
