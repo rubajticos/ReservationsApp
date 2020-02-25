@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 public class RegisterController {
 
@@ -21,7 +23,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegistrationDTO registrationData) {
+    public ResponseEntity register(@Valid @RequestBody RegistrationDTO registrationData) {
         boolean result = registerService.register(registrationData);
 
         if (result)

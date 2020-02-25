@@ -46,6 +46,7 @@ public class RegisterServiceImpl implements RegisterService {
         user.addAuthority(authority);
         user.setPassword(passwordEncodingService.encodeBCrypt(user.getPassword()));
 
+
         patient.addUser(user);
         patient = patientRepository.save(patient);
 
