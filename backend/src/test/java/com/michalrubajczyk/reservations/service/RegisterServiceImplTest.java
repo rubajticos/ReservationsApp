@@ -44,6 +44,7 @@ class RegisterServiceImplTest {
 
         //then
         verify(authorityRepository).findByName(AuthorityType.ROLE_USER);
+        verify(passwordEncodingService).encodeBCrypt(registrationDTO.getUserCredentialsDTO().getPassword());
         verify(patientRepository).save(any());
     }
 
