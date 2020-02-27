@@ -1,4 +1,7 @@
+@import "../../styling/variables.scss";
+
+
 .navheader {
-  background: #4f4f4f;
+  background: $primaryColor;
   color: #fff;
 }
