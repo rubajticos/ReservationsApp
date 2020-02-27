@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 const appRoutes: Routes = [
   { path: 'signup', component: RegisterComponent },
+  { path: '', component: RegisterComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
