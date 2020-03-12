@@ -1,11 +1,12 @@
 import { Directive, Input } from '@angular/core';
-import { FormGroup, ValidationErrors } from '@angular/forms';
+import { FormGroup, ValidationErrors, Validator, NG_VALIDATORS } from '@angular/forms';
 import { MustMatch } from '../validators/must-match.validator';
 
 @Directive({
-  selector: '[appMustMatch]'
+  selector: '[appMustMatch]',
+  providers: [{ provide: NG_VALIDATORS, useExisting: MustMatchDirective, multi: true }]
 })
-export class MustMatchDirective {
+export class MustMatchDirective implements Validator {
 
   @Input('appMustMatch') mustMatch: string[] = [];
 
