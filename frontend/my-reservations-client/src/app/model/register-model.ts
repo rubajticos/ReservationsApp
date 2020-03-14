@@ -4,7 +4,7 @@ import { Patient } from './patient';
 export class RegisterModel {
 
   constructor(
-    public user: UserRegister,
+    public userCredentials: UserRegister,
     public patient: Patient) { }
 
 }
