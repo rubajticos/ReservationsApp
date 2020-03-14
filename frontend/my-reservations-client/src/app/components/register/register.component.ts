@@ -11,6 +11,7 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class RegisterComponent implements OnInit {
 
+  phoneNumberPattern = '\\d+';
   model = new RegisterModel(new UserRegister(), new Patient());
 
   submitted = false;
@@ -21,8 +22,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-  this.submitted = true;
-  this.registerService.registerPatient(this.model);
+    this.submitted = true;
+    this.registerService.registerPatient(this.model);
   }
 
   get diagnostic() { return JSON.stringify(this.model); }
