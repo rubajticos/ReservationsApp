@@ -6,7 +6,7 @@ import { RegisterModel } from '../model/register-model';
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterServiceService {
+export class RegisterService {
 
   readonly registerURL = environment.apiBaseUrl + 'register';
 
