@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 public class RegisterServiceImpl implements RegisterService {
 
@@ -45,6 +47,7 @@ public class RegisterServiceImpl implements RegisterService {
         Authority authority = authorityRepository.findByName(AuthorityType.ROLE_USER);
         user.addAuthority(authority);
         user.setPassword(passwordEncodingService.encodeBCrypt(user.getPassword()));
+        user.setDateCreated(new Date());
 
         patient.addUser(user);
         patientRepository.save(patient);
