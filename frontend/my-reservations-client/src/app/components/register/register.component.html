@@ -1,6 +1,6 @@
 <div class="d-flex flex-row justify-content-center">
   <div class="p-2">
-    <form [appMustMatch]="['password', 'confirmPassword']">
+    <form [appMustMatch]="['password', 'confirmPassword']" #registerForm="ngForm">
       {{diagnostic}}
       <div class="form-group">
         <label for="username">Username</label>
@@ -65,5 +65,5 @@
         </div>
       </div>
     </form>
-    <div class="m-5"><button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button></div>
+    <div class="m-5"><button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid" (click)="onSubmit()">Submit</button></div>
   </div>
