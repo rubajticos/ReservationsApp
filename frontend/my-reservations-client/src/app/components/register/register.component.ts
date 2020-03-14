@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/model/patient';
 import { UserRegister } from 'src/app/model/user-register';
 import { RegisterModel } from 'src/app/model/register-model';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -14,13 +15,16 @@ export class RegisterComponent implements OnInit {
 
   submitted = false;
 
-  constructor() { }
+  constructor(private registerService: RegisterService) { }
 
   ngOnInit() {
   }
 
-  onSubmit() { this.submitted = true; }
+  onSubmit() {
+  this.submitted = true;
+  this.registerService.registerPatient(this.model);
+  }
 
-  get diagnosti() { return JSON.stringify(this.model); }
+  get diagnostic() { return JSON.stringify(this.model); }
 
 }
