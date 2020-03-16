@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { RegisterModel } from '../model/register-model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,8 @@ export class RegisterService {
 
   }
 
-  public registerPatient(patient: RegisterModel) {
-    this.http.post(this.registerURL, patient)
-      .subscribe(response => {
-        console.log(response.toString);
-      });
+  public registerPatient(patient: RegisterModel): Observable<any> {
+    return this.http.post(this.registerURL, patient);
   }
 
 

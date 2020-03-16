@@ -15,6 +15,10 @@ export class RegisterComponent implements OnInit {
   model = new RegisterModel(new UserRegister(), new Patient());
 
   submitted = false;
+  registerSuccess = false;
+  registerError = false;
+  error: string;
+  loading = false;
 
   constructor(private registerService: RegisterService) { }
 
@@ -23,9 +27,22 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.registerService.registerPatient(this.model);
+    this.loading = true;
+    this.registerService.registerPatient(this.model)
+      .subscribe(success => {
+        this.loading = false;
+        this.registerSuccess = true;
+      },
+        error => {
+          this.loading = false;
+          this.registerError = true;
+          this.error = JSON.stringify(error);
+        });
   }
 
-  get diagnostic() { return JSON.stringify(this.model); }
+  private resetAlerts() {
+    this.registerSuccess = false;
+    this.registerError = false;
+  }
 
 }
