@@ -1,5 +1,5 @@
 <div class="d-flex flex-row justify-content-center">
-  <div class="p-2">
+  <div class="p-2" [hidden]="submitted">
     <form [appMustMatch]="['password', 'confirmPassword']" #registerForm="ngForm">
       {{diagnostic}}
       <div class="form-group">
@@ -24,7 +24,8 @@
         <label for="confirmpassword">Confirm password</label>
         <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm password" required
           [(ngModel)]="model.userCredentials.confirmPassword" name="confirmPassword" #confirmPassword="ngModel">
-        <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
+        <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
+          class="alert alert-danger">
           <div *ngIf="confirmPassword.errors.required">Confirm password is required</div>
           <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
         </div>
@@ -48,8 +49,9 @@
       </div>
       <div class="form-group">
         <label for="phone">Phone</label>
-        <input type="text" class="form-control" id="phone" placeholder="Enter phone number" required minlength="9" maxlength="9" [pattern]="phoneNumberPattern"
-          [(ngModel)]="model.patient.phoneNumber" name="phone" #phone="ngModel">
+        <input type="text" class="form-control" id="phone" placeholder="Enter phone number" required minlength="9"
+          maxlength="9" [pattern]="phoneNumberPattern" [(ngModel)]="model.patient.phoneNumber" name="phone"
+          #phone="ngModel">
         <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
           <div *ngIf="phone.errors.required">Phone is required</div>
           <div *ngIf="phone.errors.pattern">Use only numbers</div>
@@ -66,5 +68,34 @@
         </div>
       </div>
     </form>
-    <div class="m-5"><button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid" (click)="onSubmit()">Submit</button></div>
+    <div class="p-5"><button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid"
+        (click)="onSubmit()">Submit</button></div>
   </div>
+
+  <div class="d-flex flex-row justify-content-center">
+    <div class="p-2" [hidden]="!submitted">
+      <h2>You registered with the following:</h2>
+      <div class="d-flex flex-row">
+        <div class="p-2 registeredLabel">Username:</div>
+        <div class="p-2">{{model.userCredentials.username}}</div>
+      </div>
+      <div class="d-flex flex-row">
+        <div class="p-2 registeredLabel">First name:</div>
+        <div class="p-2">{{model.patient.firstName}}</div>
+      </div>
+      <div class="d-flex flex-row">
+        <div class="p-2 registeredLabel">Last name:</div>
+        <div class="p-2">{{model.patient.lastName}}</div>
+      </div>
+      <div class="d-flex flex-row">
+        <div class="p-2 registeredLabel">Phone:</div>
+        <div class="p-2">{{model.patient.phoneNumber}}</div>
+      </div>
+      <div class="d-flex flex-row">
+        <div class="p-2 registeredLabel">E-mail:</div>
+        <div class="p-2">{{model.patient.email}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
