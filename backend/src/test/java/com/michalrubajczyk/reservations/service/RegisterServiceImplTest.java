@@ -44,7 +44,7 @@ class RegisterServiceImplTest {
 
         //then
         verify(authorityRepository).findByName(AuthorityType.ROLE_USER);
-        verify(passwordEncodingService).encodeBCrypt(registrationDTO.getUserCredentialsDTO().getPassword());
+        verify(passwordEncodingService).encodeBCrypt(registrationDTO.getUserCredentials().getPassword());
         verify(patientRepository).save(any());
     }
 
@@ -68,8 +68,8 @@ class RegisterServiceImplTest {
         patientDTO.setEmail("c@cc.com");
 
         RegistrationDTO registrationDTO = new RegistrationDTO();
-        registrationDTO.setUserCredentialsDTO(userCredentialsDTO);
-        registrationDTO.setPatientDTO(patientDTO);
+        registrationDTO.setUserCredentials(userCredentialsDTO);
+        registrationDTO.setPatient(patientDTO);
 
         return registrationDTO;
     }

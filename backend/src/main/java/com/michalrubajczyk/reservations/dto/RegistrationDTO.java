@@ -8,7 +8,7 @@ import javax.validation.Valid;
 public class RegistrationDTO {
 
     @Valid
-    private UserCredentialsDTO userCredentialsDTO;
+    private UserCredentialsDTO userCredentials;
     @Valid
-    private PatientDTO patientDTO;
+    private PatientDTO patient;
 }
