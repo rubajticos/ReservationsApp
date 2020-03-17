@@ -16,6 +16,7 @@ public class Patient implements Serializable {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    @Column(unique = true)
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
