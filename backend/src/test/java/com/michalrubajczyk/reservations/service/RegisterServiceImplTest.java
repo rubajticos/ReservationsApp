@@ -6,13 +6,17 @@ import com.michalrubajczyk.reservations.dto.UserCredentialsDTO;
 import com.michalrubajczyk.reservations.entity.Authority;
 import com.michalrubajczyk.reservations.repository.AuthorityRepository;
 import com.michalrubajczyk.reservations.repository.PatientRepository;
+import com.michalrubajczyk.reservations.repository.UserRepository;
 import com.michalrubajczyk.reservations.types.AuthorityType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashSet;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -21,15 +25,17 @@ class RegisterServiceImplTest {
     private RegisterServiceImpl registerService;
     private PatientRepository patientRepository;
     private AuthorityRepository authorityRepository;
+    private UserRepository userRepository;
     private PasswordEncodingService passwordEncodingService;
 
     @BeforeEach
     void setUp() {
         patientRepository = mock(PatientRepository.class);
         authorityRepository = mock(AuthorityRepository.class);
+        userRepository = mock(UserRepository.class);
         passwordEncodingService = mock(PasswordEncodingService.class);
 
-        registerService = new RegisterServiceImpl(patientRepository, authorityRepository, passwordEncodingService);
+        registerService = new RegisterServiceImpl(patientRepository, authorityRepository, userRepository, passwordEncodingService);
     }
 
     @Test
@@ -72,6 +78,26 @@ class RegisterServiceImplTest {
         registrationDTO.setPatient(patientDTO);
 
         return registrationDTO;
+    }
+
+    @Test
+    void registerWithUsernameAlreadyUsedShouldThrowException() {
+        //given
+        RegistrationDTO registrationDTO = prepareRegistrationDTO();
+        given(userRepository.countByUsername(anyString())).willReturn(1);
+
+        //then
+        assertThrows(ResponseStatusException.class, () -> registerService.register(registrationDTO));
+    }
+
+    @Test
+    void registerWithEmailAlreadyUsedShouldThrowException() {
+        //given
+        RegistrationDTO registrationDTO = prepareRegistrationDTO();
+        given(patientRepository.countByEmail(anyString())).willReturn(1);
+
+        //then
+        assertThrows(ResponseStatusException.class, () -> registerService.register(registrationDTO));
     }
 
 }

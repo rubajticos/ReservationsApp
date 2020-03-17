@@ -3,6 +3,7 @@ import { Patient } from 'src/app/model/patient';
 import { UserRegister } from 'src/app/model/user-register';
 import { RegisterModel } from 'src/app/model/register-model';
 import { RegisterService } from 'src/app/services/register.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -33,10 +34,10 @@ export class RegisterComponent implements OnInit {
         this.loading = false;
         this.registerSuccess = true;
       },
-        error => {
+        (error: HttpErrorResponse) => {
           this.loading = false;
           this.registerError = true;
-          this.error = JSON.stringify(error);
+          this.error = error.error.message;
         });
   }
 
