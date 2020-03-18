@@ -8,13 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  readonly loginURL = environment.baseUrl + 'oauth/token';
+  readonly loginURL = environment.apiBaseUrl + 'oauth/token';
 
   constructor(private http: HttpClient) { }
 
   public login(username: string, password: string): Observable<object> {
+    console.log(username + '::' + password);
+
     const headers = {
-      'Content-type': 'application/x-www-form-urlencoded'
+      'Authorization': 'Basic ' + btoa('my-client:my-secret'),
+      'Content-Type': 'application/x-www-form-urlencoded'
     };
 
     const body = new HttpParams()
@@ -22,6 +25,6 @@ export class LoginService {
       .set('password', password)
       .set('grant_type', 'password');
 
-    return this.http.post(this.loginURL, body, {headers});
+    return this.http.post(this.loginURL, body, { headers });
   }
 }
