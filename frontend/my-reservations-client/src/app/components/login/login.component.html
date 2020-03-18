@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="d-flex flex-row justify-content-center">
+  <div class="p-2">
+    <form #loginForm="ngForm">
+      <div class="form-group">
+        <label for="login">Username</label>
+        <input type="text" class="form-control" id="login" placeholder="Enter username" required [(ngModel)]="username"
+          name="login" #login="ngModel">
+        <div *ngIf="login.invalid && (login.dirty || login.touched)" class="alert alert-danger">
+          <div>Username is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pass">Password</label>
+        <input type="password" class="form-control" id="pass" placeholder="Enter password" required
+          [(ngModel)]="password" name="pass" #pass="ngModel">
+        <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="alert alert-danger">
+          <div>Password is required</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="d-flex flex-row justify-content-center">
+  <div class="p-2">
+    <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!loginForm.form.valid"
+      (click)="onSubmit()">
+      Sign In!
+    </button>
+  </div>
+</div>
