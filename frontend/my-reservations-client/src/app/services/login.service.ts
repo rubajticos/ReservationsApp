@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { AuthorizationModel } from '../model/authorization-model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  public login(username: string, password: string): Observable<object> {
+  public login(username: string, password: string): Observable<AuthorizationModel> {
     console.log(username + '::' + password);
 
     const headers = {
@@ -25,6 +26,6 @@ export class LoginService {
       .set('username', username)
       .set('password', password);
 
-    return this.http.post(this.loginURL, body, { headers });
+    return this.http.post<AuthorizationModel>(this.loginURL, body, { headers });
   }
 }
