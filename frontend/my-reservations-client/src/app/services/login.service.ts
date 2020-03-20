@@ -14,8 +14,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   public login(username: string, password: string): Observable<AuthorizationModel> {
-    console.log(username + '::' + password);
-
     const headers = {
       'Authorization': 'Basic ' + btoa('my-client:my-secret'),
       'Content-Type': 'application/x-www-form-urlencoded'

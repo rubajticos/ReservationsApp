@@ -14,21 +14,37 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
+  displaySuccess = false;
+  displayError = false;
+  errorMessage: string;
+  loading = false;
+
   constructor(private loginService: LoginService, private cookieService: CookieService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
+    this.resetInfo();
+    this.loading = true;
     this.loginService.login(this.username, this.password)
       .subscribe(
         (data: AuthorizationModel) => {
+          this.loading = false;
+          this.displaySuccess = true;
           this.saveTokens(data);
         },
         (error: HttpErrorResponse) => {
-          console.log('Login error: ' + error.error.message);
+          this.loading = false;
+          this.displayError = true;
+          this.errorMessage = error.error.message;
         }
       );
+  }
+
+  private resetInfo(): void {
+    this.displaySuccess = false;
+    this.displayError = false;
   }
 
   private saveTokens(authModel: AuthorizationModel) {
