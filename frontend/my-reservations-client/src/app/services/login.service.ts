@@ -21,9 +21,9 @@ export class LoginService {
     };
 
     const body = new HttpParams()
+      .set('grant_type', 'password')
       .set('username', username)
-      .set('password', password)
-      .set('grant_type', 'password');
+      .set('password', password);
 
     return this.http.post(this.loginURL, body, { headers });
   }
