@@ -13,6 +13,7 @@ import { RegisterService } from './services/register.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { LoginService } from './services/login.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [RegisterService, LoginService],
+  providers: [RegisterService, LoginService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
