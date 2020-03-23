@@ -11,6 +11,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { MustMatchDirective } from './directives/must-match.directive';
 import { RegisterService } from './services/register.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { LoginService } from './services/login.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     PageNotFoundComponent,
     RegisterComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [RegisterService],
+  providers: [RegisterService, LoginService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

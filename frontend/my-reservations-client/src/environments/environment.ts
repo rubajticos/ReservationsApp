@@ -2,6 +2,8 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { toBase64String } from '@angular/compiler/src/output/source_map';
+
 export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:8080/api/'
