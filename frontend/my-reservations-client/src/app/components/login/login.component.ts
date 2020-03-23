@@ -3,6 +3,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { HttpErrorResponse, HttpResponse, HttpEvent } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthorizationModel } from 'src/app/model/authorization-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +19,9 @@ export class LoginComponent implements OnInit {
   displayError = false;
   errorMessage: string;
   loading = false;
+  seconds = 5;
 
-  constructor(private loginService: LoginService, private cookieService: CookieService) { }
+  constructor(private loginService: LoginService, private cookieService: CookieService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -50,6 +52,10 @@ export class LoginComponent implements OnInit {
   private saveTokens(authModel: AuthorizationModel) {
     this.cookieService.set('access_token', authModel.access_token);
     this.cookieService.set('refresh_token', authModel.refresh_token);
+  }
+
+  public redirectToVisits() {
+    this.router.navigate(['/']);
   }
 
 }
