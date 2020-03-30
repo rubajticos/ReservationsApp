@@ -12,8 +12,4 @@ public class UserCredentialsDTO {
 
     @NotBlank(message = "Password is mandatory")
     private String password;
-
-    @NotBlank(message = "Confirm password is mandatory")
-    private String confirmPassword;
-
 }
