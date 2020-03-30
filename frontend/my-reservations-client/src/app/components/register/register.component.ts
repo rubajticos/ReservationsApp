@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
 
   phoneNumberPattern = '\\d+';
   model = new RegisterModel(new UserRegister(), new Patient());
+  repassword: string;
 
   submitted = false;
   registerSuccess = false;
