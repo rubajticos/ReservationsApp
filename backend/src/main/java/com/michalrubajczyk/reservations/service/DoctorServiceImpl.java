@@ -34,7 +34,8 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<Doctor> getDoctorsBySpecialization(SpecializationType specializationType) {
-        return doctorRepository.findBySpecialization(specializationType);
+    public List<Doctor> getDoctorsBySpecialization(String specializationType) {
+        SpecializationType specialization = SpecializationType.fromName(specializationType);
+        return doctorRepository.findBySpecialization(specialization);
     }
 }

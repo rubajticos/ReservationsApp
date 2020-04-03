@@ -7,7 +7,7 @@ import com.michalrubajczyk.reservations.types.SpecializationType;
 public class DoctorMapper extends BaseMapper<Doctor, DoctorDTO> {
 
     @Override
-    Doctor dtoToEntity(DoctorDTO dto) {
+    public Doctor dtoToEntity(DoctorDTO dto) {
         Doctor entity = new Doctor();
         entity.setId(dto.getId());
         entity.setFirstName(dto.getFirstName());
@@ -18,7 +18,7 @@ public class DoctorMapper extends BaseMapper<Doctor, DoctorDTO> {
     }
 
     @Override
-    DoctorDTO entityToDto(Doctor entity) {
+    public DoctorDTO entityToDto(Doctor entity) {
         DoctorDTO dto = new DoctorDTO();
         dto.setId(entity.getId());
         dto.setFirstName(entity.getFirstName());

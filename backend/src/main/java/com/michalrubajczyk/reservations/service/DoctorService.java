@@ -14,6 +14,6 @@ public interface DoctorService {
 
     List<Doctor> getDoctorsByName(String name, String lastName);
 
-    List<Doctor> getDoctorsBySpecialization(SpecializationType specializationType);
+    List<Doctor> getDoctorsBySpecialization(String specializationType);
 
 }
