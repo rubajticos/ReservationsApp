@@ -1,7 +1,9 @@
 package com.michalrubajczyk.reservations.service;
 
 import com.michalrubajczyk.reservations.entity.Doctor;
+import com.michalrubajczyk.reservations.entity.Specialization;
 import com.michalrubajczyk.reservations.repository.DoctorRepository;
+import com.michalrubajczyk.reservations.repository.SpecializationRepository;
 import com.michalrubajczyk.reservations.types.SpecializationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +15,12 @@ import java.util.Optional;
 public class DoctorServiceImpl implements DoctorService {
 
     DoctorRepository doctorRepository;
+    SpecializationRepository specializationRepository;
 
     @Autowired
-    public DoctorServiceImpl(DoctorRepository doctorRepository) {
+    public DoctorServiceImpl(DoctorRepository doctorRepository, SpecializationRepository specializationRepository) {
         this.doctorRepository = doctorRepository;
+        this.specializationRepository = specializationRepository;
     }
 
 
@@ -37,7 +41,13 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public List<Doctor> getDoctorsBySpecialization(String specializationType) {
-        SpecializationType specialization = SpecializationType.fromName(specializationType);
-        return doctorRepository.findBySpecialization(specialization);
+        SpecializationType specType = SpecializationType.valueOf(specializationType);
+        Optional<Specialization> optionalSpecialization = specializationRepository.findByType(specType);
+        List<Doctor> doctors = null;
+        if(optionalSpecialization.isPresent()) {
+            doctors = doctorRepository.findBySpecialization(optionalSpecialization.get());
+        }
+
+        return doctors;
     }
 }

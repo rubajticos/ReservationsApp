@@ -1,7 +1,6 @@
 package com.michalrubajczyk.reservations.service;
 
 import com.michalrubajczyk.reservations.entity.Doctor;
-import com.michalrubajczyk.reservations.types.SpecializationType;
 
 import java.util.List;
 import java.util.Optional;

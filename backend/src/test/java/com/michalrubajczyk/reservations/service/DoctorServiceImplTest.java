@@ -3,6 +3,7 @@ package com.michalrubajczyk.reservations.service;
 import com.michalrubajczyk.reservations.entity.Doctor;
 import com.michalrubajczyk.reservations.entity.Specialization;
 import com.michalrubajczyk.reservations.repository.DoctorRepository;
+import com.michalrubajczyk.reservations.repository.SpecializationRepository;
 import com.michalrubajczyk.reservations.types.SpecializationType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,13 +22,15 @@ import static org.mockito.Mockito.mock;
 class DoctorServiceImplTest {
 
     private DoctorRepository doctorRepository;
+    private SpecializationRepository specializationRepository;
     private List<Doctor> doctors = new ArrayList<>();
     private DoctorService service;
 
     @BeforeEach
     void setUp() {
         doctorRepository = mock(DoctorRepository.class);
-        service = new DoctorServiceImpl(doctorRepository);
+        specializationRepository = mock(SpecializationRepository.class);
+        service = new DoctorServiceImpl(doctorRepository, specializationRepository);
         prepareDoctors();
     }
 
@@ -75,9 +78,11 @@ class DoctorServiceImplTest {
 
     @Test
     void getDoctorsBySpecializationShouldReturnListOfPediatricians() {
-        given(doctorRepository.findBySpecialization(SpecializationType.PEDIATRICIAN)).willReturn(Arrays.asList(doctors.get(0), doctors.get(1)));
+        Specialization specialization = new Specialization(SpecializationType.PEDIATRICIAN, SpecializationType.PEDIATRICIAN.getName());
+        given(specializationRepository.findByType(SpecializationType.PEDIATRICIAN)).willReturn(Optional.of(specialization));
+        given(doctorRepository.findBySpecialization(specialization)).willReturn(Arrays.asList(doctors.get(0), doctors.get(1)));
 
-        List<Doctor> result = service.getDoctorsBySpecialization("Pediatrician");
+        List<Doctor> result = service.getDoctorsBySpecialization("PEDIATRICIAN");
 
         assertThat(result, hasSize(2));
         assertThat(result, contains(doctors.get(0), doctors.get(1)));
@@ -85,9 +90,11 @@ class DoctorServiceImplTest {
 
     @Test
     void getDoctorsBySpecializationShouldReturnListOfSurgeons() {
-        given(doctorRepository.findBySpecialization(SpecializationType.SURGEON)).willReturn(Arrays.asList(doctors.get(2), doctors.get(3), doctors.get(4)));
+        Specialization specialization = new Specialization(SpecializationType.SURGEON, SpecializationType.SURGEON.getName());
+        given(specializationRepository.findByType(SpecializationType.SURGEON)).willReturn(Optional.of(specialization));
+        given(doctorRepository.findBySpecialization(specialization)).willReturn(Arrays.asList(doctors.get(2), doctors.get(3), doctors.get(4)));
 
-        List<Doctor> result = service.getDoctorsBySpecialization("Surgeon");
+        List<Doctor> result = service.getDoctorsBySpecialization("SURGEON");
 
         assertThat(result, hasSize(3));
         assertThat(result, contains(doctors.get(2), doctors.get(3), doctors.get(4)));
