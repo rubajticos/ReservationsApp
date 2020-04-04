@@ -22,13 +22,13 @@ class SpecializationTypeTest {
         String surgeon = "Surgeon";
 
         assertThat(SpecializationType.fromName(pediatrician), is(SpecializationType.PEDIATRICIAN));
-        assertThat(SpecializationType.fromName(surgeon), is(SpecializationType.SUREGON));
+        assertThat(SpecializationType.fromName(surgeon), is(SpecializationType.SURGEON));
     }
 
     @Test
     public void enumShouldReturnsNameOfValue() {
         assertThat(SpecializationType.PEDIATRICIAN.getName(), equalTo("Pediatrician"));
-        assertThat(SpecializationType.SUREGON.getName(), equalTo("Surgeon"));
+        assertThat(SpecializationType.SURGEON.getName(), equalTo("Surgeon"));
     }
 
 }

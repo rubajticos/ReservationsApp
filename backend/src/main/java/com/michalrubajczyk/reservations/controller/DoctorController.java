@@ -37,7 +37,7 @@ public class DoctorController {
                 .body(doctorDTOS);
     }
 
-    @GetMapping("/doctor/{id}")
+    @GetMapping("/doctor/id/{id}")
     public ResponseEntity getDoctorById(@NotNull @PathVariable Long id) {
         Optional<Doctor> doctorOptional = doctorService.getDoctorById(id);
         if (doctorOptional.isPresent()) {
@@ -54,8 +54,8 @@ public class DoctorController {
                 .body(null);
     }
 
-    @GetMapping("/doctor/{firstName}?{lastName}")
-    public ResponseEntity getDoctorById(@NotNull @PathVariable String firstName, @NotNull @PathVariable String lastName) {
+    @GetMapping("/doctor/name/{firstName}/{lastName}")
+    public ResponseEntity getDoctorByName(@NotNull @PathVariable String firstName, @NotNull @PathVariable String lastName) {
         List<Doctor> doctors = doctorService.getDoctorsByName(firstName, lastName);
         List<DoctorDTO> doctorDTOS = doctorMapper.entityListToDtoList(doctors);
 
@@ -64,7 +64,7 @@ public class DoctorController {
                 .body(doctorDTOS);
     }
 
-    @GetMapping("/doctor/{specialization}")
+    @GetMapping("/doctor/spec/{specialization}")
     public ResponseEntity getDoctorsBySpecialization(@NotNull @PathVariable String specialization) {
         List<Doctor> doctors = doctorService.getDoctorsBySpecialization(specialization);
         List<DoctorDTO> doctorDTOS = doctorMapper.entityListToDtoList(doctors);

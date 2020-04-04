@@ -4,10 +4,12 @@ import com.michalrubajczyk.reservations.entity.Doctor;
 import com.michalrubajczyk.reservations.repository.DoctorRepository;
 import com.michalrubajczyk.reservations.types.SpecializationType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class DoctorServiceImpl implements DoctorService {
 
     DoctorRepository doctorRepository;

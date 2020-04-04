@@ -55,7 +55,7 @@ class DoctorServiceImplTest {
     @Test
     void getDoctorsByNameShouldReturnListOfDoctors() {
         Doctor doc1 = CreateDoctor(1L, "FIRST", "LAST", SpecializationType.PEDIATRICIAN);
-        Doctor doc2 = CreateDoctor(2L, "FIRST", "LAST", SpecializationType.SUREGON);
+        Doctor doc2 = CreateDoctor(2L, "FIRST", "LAST", SpecializationType.SURGEON);
         given(doctorRepository.findByFirstNameAndLastName("FIRST", "LAST")).willReturn(Arrays.asList(doc1, doc2));
 
         List<Doctor> result = service.getDoctorsByName("FIRST", "LAST");
@@ -84,7 +84,7 @@ class DoctorServiceImplTest {
 
     @Test
     void getDoctorsBySpecializationShouldReturnListOfSurgeons() {
-        given(doctorRepository.findBySpecialization(SpecializationType.SUREGON)).willReturn(Arrays.asList(doctors.get(2), doctors.get(3), doctors.get(4)));
+        given(doctorRepository.findBySpecialization(SpecializationType.SURGEON)).willReturn(Arrays.asList(doctors.get(2), doctors.get(3), doctors.get(4)));
 
         List<Doctor> result = service.getDoctorsBySpecialization("Surgeon");
 
@@ -95,9 +95,9 @@ class DoctorServiceImplTest {
     private void prepareDoctors() {
         Doctor doc1 = CreateDoctor(1L, "First1", "Last1", SpecializationType.PEDIATRICIAN);
         Doctor doc2 = CreateDoctor(2L, "First2", "Last2", SpecializationType.PEDIATRICIAN);
-        Doctor doc3 = CreateDoctor(3L, "First3", "Last3", SpecializationType.SUREGON);
-        Doctor doc4 = CreateDoctor(4L, "First4", "Last4", SpecializationType.SUREGON);
-        Doctor doc5 = CreateDoctor(5L, "First4", "Last4", SpecializationType.SUREGON);
+        Doctor doc3 = CreateDoctor(3L, "First3", "Last3", SpecializationType.SURGEON);
+        Doctor doc4 = CreateDoctor(4L, "First4", "Last4", SpecializationType.SURGEON);
+        Doctor doc5 = CreateDoctor(5L, "First4", "Last4", SpecializationType.SURGEON);
 
         this.doctors.add(doc1);
         this.doctors.add(doc2);

@@ -2,7 +2,7 @@ package com.michalrubajczyk.reservations.types;
 
 public enum SpecializationType {
     PEDIATRICIAN("Pediatrician"),
-    SUREGON("Surgeon");
+    SURGEON("Surgeon");
 
     private String value;
 
