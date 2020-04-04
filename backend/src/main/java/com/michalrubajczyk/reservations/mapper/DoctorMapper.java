@@ -2,9 +2,14 @@ package com.michalrubajczyk.reservations.mapper;
 
 import com.michalrubajczyk.reservations.dto.DoctorDTO;
 import com.michalrubajczyk.reservations.entity.Doctor;
-import com.michalrubajczyk.reservations.types.SpecializationType;
 
 public class DoctorMapper extends BaseMapper<Doctor, DoctorDTO> {
+
+    private SpecializationMapper specializationMapper;
+
+    public DoctorMapper(SpecializationMapper specializationMapper) {
+        this.specializationMapper = specializationMapper;
+    }
 
     @Override
     public Doctor dtoToEntity(DoctorDTO dto) {
@@ -12,7 +17,7 @@ public class DoctorMapper extends BaseMapper<Doctor, DoctorDTO> {
         entity.setId(dto.getId());
         entity.setFirstName(dto.getFirstName());
         entity.setLastName(dto.getLastName());
-        entity.setSpecialization(SpecializationType.fromName(dto.getSpecialization()));
+        entity.addSpecialization(specializationMapper.dtoToEntity(dto.getSpecialization()));
 
         return entity;
     }
@@ -23,7 +28,7 @@ public class DoctorMapper extends BaseMapper<Doctor, DoctorDTO> {
         dto.setId(entity.getId());
         dto.setFirstName(entity.getFirstName());
         dto.setLastName(entity.getLastName());
-        dto.setSpecialization(entity.getSpecialization().getName());
+        dto.setSpecialization(specializationMapper.entityToDto(entity.getSpecialization()));
 
         return dto;
     }

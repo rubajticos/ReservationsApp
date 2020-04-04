@@ -3,6 +3,7 @@ package com.michalrubajczyk.reservations.controller;
 import com.michalrubajczyk.reservations.dto.DoctorDTO;
 import com.michalrubajczyk.reservations.entity.Doctor;
 import com.michalrubajczyk.reservations.mapper.DoctorMapper;
+import com.michalrubajczyk.reservations.mapper.SpecializationMapper;
 import com.michalrubajczyk.reservations.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +23,9 @@ public class DoctorController {
     private DoctorMapper doctorMapper;
 
     @Autowired
-    public DoctorController(DoctorService doctorService) {
+    public DoctorController(DoctorService doctorService, SpecializationMapper specializationMapper) {
         this.doctorService = doctorService;
-        this.doctorMapper = new DoctorMapper();
+        this.doctorMapper = new DoctorMapper(specializationMapper);
     }
 
     @GetMapping("/doctor")

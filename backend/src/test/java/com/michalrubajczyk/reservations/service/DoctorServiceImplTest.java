@@ -1,6 +1,7 @@
 package com.michalrubajczyk.reservations.service;
 
 import com.michalrubajczyk.reservations.entity.Doctor;
+import com.michalrubajczyk.reservations.entity.Specialization;
 import com.michalrubajczyk.reservations.repository.DoctorRepository;
 import com.michalrubajczyk.reservations.types.SpecializationType;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,8 +55,8 @@ class DoctorServiceImplTest {
 
     @Test
     void getDoctorsByNameShouldReturnListOfDoctors() {
-        Doctor doc1 = CreateDoctor(1L, "FIRST", "LAST", SpecializationType.PEDIATRICIAN);
-        Doctor doc2 = CreateDoctor(2L, "FIRST", "LAST", SpecializationType.SURGEON);
+        Doctor doc1 = CreateDoctor(1L, "FIRST", "LAST", new Specialization());
+        Doctor doc2 = CreateDoctor(2L, "FIRST", "LAST", new Specialization());
         given(doctorRepository.findByFirstNameAndLastName("FIRST", "LAST")).willReturn(Arrays.asList(doc1, doc2));
 
         List<Doctor> result = service.getDoctorsByName("FIRST", "LAST");
@@ -93,11 +94,11 @@ class DoctorServiceImplTest {
     }
 
     private void prepareDoctors() {
-        Doctor doc1 = CreateDoctor(1L, "First1", "Last1", SpecializationType.PEDIATRICIAN);
-        Doctor doc2 = CreateDoctor(2L, "First2", "Last2", SpecializationType.PEDIATRICIAN);
-        Doctor doc3 = CreateDoctor(3L, "First3", "Last3", SpecializationType.SURGEON);
-        Doctor doc4 = CreateDoctor(4L, "First4", "Last4", SpecializationType.SURGEON);
-        Doctor doc5 = CreateDoctor(5L, "First4", "Last4", SpecializationType.SURGEON);
+        Doctor doc1 = CreateDoctor(1L, "First1", "Last1", new Specialization(SpecializationType.PEDIATRICIAN, SpecializationType.PEDIATRICIAN.getName()));
+        Doctor doc2 = CreateDoctor(2L, "First2", "Last2", new Specialization(SpecializationType.PEDIATRICIAN, SpecializationType.PEDIATRICIAN.getName()));
+        Doctor doc3 = CreateDoctor(3L, "First3", "Last3", new Specialization(SpecializationType.SURGEON, SpecializationType.SURGEON.getName()));
+        Doctor doc4 = CreateDoctor(4L, "First4", "Last4", new Specialization(SpecializationType.SURGEON, SpecializationType.SURGEON.getName()));
+        Doctor doc5 = CreateDoctor(5L, "First4", "Last4", new Specialization(SpecializationType.SURGEON, SpecializationType.SURGEON.getName()));
 
         this.doctors.add(doc1);
         this.doctors.add(doc2);
@@ -106,7 +107,7 @@ class DoctorServiceImplTest {
         this.doctors.add(doc5);
     }
 
-    private Doctor CreateDoctor(Long id, String firstName, String lastName, SpecializationType specialization) {
+    private Doctor CreateDoctor(Long id, String firstName, String lastName, Specialization specialization) {
         Doctor doctor = new Doctor();
         doctor.setId(id);
         doctor.setFirstName(firstName);

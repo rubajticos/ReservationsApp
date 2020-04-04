@@ -1,7 +1,9 @@
 package com.michalrubajczyk.reservations.mapper;
 
 import com.michalrubajczyk.reservations.dto.DoctorDTO;
+import com.michalrubajczyk.reservations.dto.SpecializationDTO;
 import com.michalrubajczyk.reservations.entity.Doctor;
+import com.michalrubajczyk.reservations.entity.Specialization;
 import com.michalrubajczyk.reservations.types.SpecializationType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -18,7 +20,7 @@ class DoctorMapperTest {
 
     @BeforeAll
     static void setUp() {
-        doctorMapper = new DoctorMapper();
+        doctorMapper = new DoctorMapper(new SpecializationMapper());
     }
 
     @Test
@@ -45,7 +47,9 @@ class DoctorMapperTest {
         assertEquals(doctorDTO.getId(), doctor.getId());
         assertEquals(doctorDTO.getFirstName(), doctor.getFirstName());
         assertEquals(doctorDTO.getLastName(), doctor.getLastName());
-        assertEquals(doctorDTO.getSpecialization(), doctor.getSpecialization().getName());
+        assertEquals(doctorDTO.getSpecialization().getId(), doctor.getSpecialization().getId());
+        assertEquals(doctorDTO.getSpecialization().getName(), doctor.getSpecialization().getName());
+        assertEquals(doctorDTO.getSpecialization().getType(), doctor.getSpecialization().getType().toString());
     }
 
     @Test
@@ -71,7 +75,9 @@ class DoctorMapperTest {
     @Test
     void conversionToEntityShouldThrowExceptionWhenSpecializationIsInvalid() {
         DoctorDTO dto = new DoctorDTO();
-        dto.setSpecialization("invalid");
+        SpecializationDTO specializationDTO = new SpecializationDTO();
+        specializationDTO.setType("WRONG_TYPE");
+        dto.setSpecialization(specializationDTO);
 
         assertThrows(IllegalArgumentException.class, () -> doctorMapper.dtoToEntity(dto));
     }
@@ -80,7 +86,9 @@ class DoctorMapperTest {
         assertEquals(doctor.getId(), doctorDTO.getId());
         assertEquals(doctor.getFirstName(), doctorDTO.getFirstName());
         assertEquals(doctor.getLastName(), doctorDTO.getLastName());
-        assertEquals(doctor.getSpecialization().getName(), doctorDTO.getSpecialization());
+        assertEquals(doctor.getSpecialization().getId(), doctorDTO.getSpecialization().getId());
+        assertEquals(doctor.getSpecialization().getName(), doctorDTO.getSpecialization().getName());
+        assertEquals(doctor.getSpecialization().getType().toString(), doctorDTO.getSpecialization().getType());
     }
 
     private Doctor generateDoctor() {
@@ -88,7 +96,7 @@ class DoctorMapperTest {
         doctor.setId(1L);
         doctor.setFirstName("a");
         doctor.setLastName("b");
-        doctor.setSpecialization(SpecializationType.PEDIATRICIAN);
+        doctor.setSpecialization(new Specialization(SpecializationType.SURGEON, SpecializationType.SURGEON.getName()));
 
         return doctor;
     }
@@ -98,7 +106,7 @@ class DoctorMapperTest {
         doctorDTO.setId(1L);
         doctorDTO.setFirstName("a");
         doctorDTO.setLastName("b");
-        doctorDTO.setSpecialization("Pediatrician");
+        doctorDTO.setSpecialization(new SpecializationDTO(1L, SpecializationType.PEDIATRICIAN.toString(), SpecializationType.PEDIATRICIAN.getName()));
 
         return doctorDTO;
     }
@@ -110,7 +118,7 @@ class DoctorMapperTest {
             d.setId((long) i);
             d.setFirstName("a");
             d.setLastName("b");
-            d.setSpecialization(SpecializationType.PEDIATRICIAN);
+            d.setSpecialization(new Specialization(SpecializationType.SURGEON, SpecializationType.SURGEON.getName()));
 
             doctors.add(d);
         }
@@ -125,7 +133,7 @@ class DoctorMapperTest {
             d.setId((long) i);
             d.setFirstName("a");
             d.setLastName("b");
-            d.setSpecialization("Pediatrician");
+            d.setSpecialization(new SpecializationDTO(1L, SpecializationType.PEDIATRICIAN.toString(), SpecializationType.PEDIATRICIAN.getName()));
             doctorsDTO.add(d);
         }
 
