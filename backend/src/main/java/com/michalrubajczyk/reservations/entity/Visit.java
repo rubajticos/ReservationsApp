@@ -24,6 +24,9 @@ public class Visit implements Serializable {
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id", nullable = false)
     private Doctor doctor;
 
     public Visit() {
@@ -32,6 +35,11 @@ public class Visit implements Serializable {
     public void addPatient(Patient patient) {
         this.patient = patient;
         this.patient.getVisits().add(this);
+    }
+
+    public void addDoctor(Doctor doctor) {
+        this.doctor = doctor;
+        this.doctor.getVisits().add(this);
     }
 
 }

@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,6 +21,9 @@ public class Doctor implements Serializable {
     @ManyToOne
     @JoinColumn(name = "specialization_id")
     private Specialization specialization;
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Visit> visits = new HashSet<>();
 
     public Doctor() {
     }
