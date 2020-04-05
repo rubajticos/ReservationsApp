@@ -20,10 +20,18 @@ public class Visit implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private VisitStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
     private Doctor doctor;
 
     public Visit() {
+    }
+
+    public void addPatient(Patient patient) {
+        this.patient = patient;
+        this.patient.getVisits().add(this);
     }
 
 }
