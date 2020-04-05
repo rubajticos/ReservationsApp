@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -42,4 +43,33 @@ public class Visit implements Serializable {
         this.doctor.getVisits().add(this);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Visit visit = (Visit) o;
+        return Objects.equals(id, visit.id) &&
+                Objects.equals(registrationDateTime, visit.registrationDateTime) &&
+                Objects.equals(dateTime, visit.dateTime) &&
+                status == visit.status &&
+                Objects.equals(patient, visit.patient) &&
+                Objects.equals(doctor, visit.doctor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, registrationDateTime, dateTime, status, patient, doctor);
+    }
+
+    @Override
+    public String toString() {
+        return "Visit{" +
+                "id=" + id +
+                ", registrationDateTime=" + registrationDateTime +
+                ", dateTime=" + dateTime +
+                ", status=" + status +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
+                '}';
+    }
 }
