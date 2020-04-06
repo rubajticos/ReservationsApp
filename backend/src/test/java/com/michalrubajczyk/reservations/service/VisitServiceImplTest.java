@@ -94,6 +94,14 @@ class VisitServiceImplTest {
         assertThrows(ResponseStatusException.class, () -> visitService.createVisit(model.visitCreationDTO));
     }
 
+    @Test
+    void createVisit_ShouldThrowExceptionWhenSaveIntoDBFailed() {
+        CreatingVisitEntityModel model = prepareCreationData();
+        given(visitRepository.save(any())).willThrow(ResponseStatusException.class);
+
+        assertThrows(ResponseStatusException.class, () -> visitService.createVisit(model.visitCreationDTO));
+    }
+
     private CreatingVisitEntityModel prepareCreationData() {
         LocalDateTime visitDate = LocalDateTime.of(2020, 1, 3, 8, 0);
         LocalDateTime now = LocalDateTime.of(2020, 1, 1, 12, 0);
