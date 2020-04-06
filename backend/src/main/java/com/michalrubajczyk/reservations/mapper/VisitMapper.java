@@ -15,7 +15,7 @@ public class VisitMapper extends BaseMapper<Visit, VisitDTO> {
     }
 
     @Override
-    Visit dtoToEntity(VisitDTO dto) {
+    public Visit dtoToEntity(VisitDTO dto) {
         Visit entity = new Visit();
         entity.setId(dto.getId());
         entity.setRegistrationDateTime(dto.getRegistationDateTime());
@@ -28,7 +28,7 @@ public class VisitMapper extends BaseMapper<Visit, VisitDTO> {
     }
 
     @Override
-    VisitDTO entityToDto(Visit entity) {
+    public VisitDTO entityToDto(Visit entity) {
         VisitDTO dto = new VisitDTO();
         dto.setId(entity.getId());
         dto.setRegistationDateTime(entity.getRegistrationDateTime());

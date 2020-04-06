@@ -9,4 +9,7 @@ public class DoctorDTO {
     private String firstName;
     private String lastName;
     private SpecializationDTO specialization;
+
+    public DoctorDTO() {
+    }
 }

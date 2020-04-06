@@ -22,4 +22,7 @@ public class PatientDTO {
 
     @Email(message = "Email wrong format")
     private String email;
+
+    public PatientDTO() {
+    }
 }
