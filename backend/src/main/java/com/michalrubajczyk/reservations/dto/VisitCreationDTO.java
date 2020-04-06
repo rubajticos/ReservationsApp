@@ -1,0 +1,28 @@
+package com.michalrubajczyk.reservations.dto;
+
+import lombok.Data;
+
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+
+@Data
+public class VisitCreationDTO {
+
+    @NotNull(message = "Id is mandatory")
+    Long id;
+
+    @NotNull(message = "Registration date and time is mandatory")
+    private LocalDateTime registationDateTime;
+
+    @NotNull(message = "Visit date and time is mandatory")
+    private LocalDateTime dateTime;
+
+    private String status;
+
+    @NotNull(message = "PatientID is mandatory")
+    private Long patientId;
+
+    @NotNull(message = "DoctorID is mandatory")
+    private Long doctorId;
+
+}
