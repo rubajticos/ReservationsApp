@@ -10,4 +10,9 @@ public class MapperBeanConfig {
     public SpecializationMapper specializationMapper() {
         return new SpecializationMapper();
     }
+
+    @Bean
+    public VisitMapper visitMapper() {
+        return new VisitMapper(new PatientMapper(), new DoctorMapper(new SpecializationMapper()));
+    }
 }

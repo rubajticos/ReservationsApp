@@ -31,4 +31,13 @@ public class Specialization implements Serializable {
 
     public Specialization() {
     }
+
+    @Override
+    public String toString() {
+        return "Specialization{" +
+                "id=" + id +
+                ", type=" + type +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -7,7 +7,7 @@ import com.michalrubajczyk.reservations.types.SpecializationType;
 public class SpecializationMapper extends BaseMapper<Specialization, SpecializationDTO> {
 
     @Override
-    Specialization dtoToEntity(SpecializationDTO dto) {
+    public Specialization dtoToEntity(SpecializationDTO dto) {
         Specialization entity = new Specialization();
         entity.setId(dto.getId());
         entity.setName(dto.getName());
@@ -17,7 +17,7 @@ public class SpecializationMapper extends BaseMapper<Specialization, Specializat
     }
 
     @Override
-    SpecializationDTO entityToDto(Specialization entity) {
+    public SpecializationDTO entityToDto(Specialization entity) {
         SpecializationDTO dto = new SpecializationDTO();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
