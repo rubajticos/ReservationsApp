@@ -17,8 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class VisitServiceImpl implements VisitService {
@@ -78,6 +77,23 @@ public class VisitServiceImpl implements VisitService {
 
     @Override
     public Set<VisitDTO> getVisitsForPatient(Long patientId, UserDetails userDetails) {
-        return null;
+        Patient patient = null;
+        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        if (optionalPatient.isPresent()) {
+            patient = optionalPatient.get();
+        }
+        checkPermissions(patient, userDetails);
+
+        Set<Visit> visits = visitRepository.findByPatient(patient);
+        List<VisitDTO> visitDTOS = visitMapper.entityListToDtoList(new ArrayList<>(visits));
+
+        return new HashSet<>(visitDTOS);
+    }
+
+    private void checkPermissions(Patient patient, UserDetails userDetails) {
+        String patientOwner = patient.getUser().getUsername();
+        String user = userDetails.getUsername();
+        if (!patientOwner.equals(user))
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User is not owner of requested Patient");
     }
 }

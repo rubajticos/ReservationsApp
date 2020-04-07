@@ -54,10 +54,11 @@ class VisitServiceImplTest {
         visitMapper = new VisitMapper(new PatientMapper(), new DoctorMapper(new SpecializationMapper()));
         visitService = new VisitServiceImpl(visitRepository, patientRepository, doctorRepository, visitMapper);
 
-        doctor = createDoctor();
-        patient = createPatient();
         user = new User();
         user.setUsername("USER");
+        doctor = createDoctor();
+        patient = createPatient();
+
 
         given(doctorRepository.findById(1L)).willReturn(Optional.of((doctor)));
         given(patientRepository.findById(1L)).willReturn(Optional.of(patient));
@@ -123,7 +124,6 @@ class VisitServiceImplTest {
 
         Set<VisitDTO> result = visitService.getVisitsForPatient(p.getId(), userDetails);
 
-        verify(visitMapper, times(visits.size())).entityToDto(any());
         assertThat(result, hasSize(2));
     }
 
@@ -141,7 +141,6 @@ class VisitServiceImplTest {
     @Test
     void getVisitsForPatient_ShouldThrowExceptionWhenUserNotPatientOwner() {
         Patient p = createPatient();
-        p.addUser(user);
         given(patientRepository.findById(p.getId())).willReturn(Optional.of(patient));
         given(userDetails.getUsername()).willReturn("OTHER_USER");
 
@@ -212,7 +211,7 @@ class VisitServiceImplTest {
         patient.setLastName("BB");
         patient.setEmail("a@b.com");
         patient.setPhoneNumber("123456789");
-        patient.setUser(user);
+        patient.addUser(user);
         return patient;
     }
 
