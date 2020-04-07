@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -17,6 +18,8 @@ public class Patient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String uuid = UUID.randomUUID().toString();
 
     private String firstName;
     private String lastName;
@@ -45,17 +48,12 @@ public class Patient implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(id, patient.id) &&
-                Objects.equals(firstName, patient.firstName) &&
-                Objects.equals(lastName, patient.lastName) &&
-                Objects.equals(phoneNumber, patient.phoneNumber) &&
-                Objects.equals(email, patient.email) &&
-                Objects.equals(user, patient.user);
+        return uuid.equals(patient.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, phoneNumber, email, user);
+        return Objects.hash(uuid);
     }
 
     @Override

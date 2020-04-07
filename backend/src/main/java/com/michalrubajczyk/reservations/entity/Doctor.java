@@ -9,14 +9,16 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Data
 public class Doctor implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String uuid = UUID.randomUUID().toString();
 
     private String firstName;
     private String lastName;
@@ -42,15 +44,12 @@ public class Doctor implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return Objects.equals(id, doctor.id) &&
-                Objects.equals(firstName, doctor.firstName) &&
-                Objects.equals(lastName, doctor.lastName) &&
-                Objects.equals(specialization, doctor.specialization);
+        return Objects.equals(uuid, doctor.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, specialization);
+        return Objects.hash(uuid);
     }
 
     @Override

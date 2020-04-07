@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -15,6 +16,8 @@ public class Authority implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String uuid = UUID.randomUUID().toString();
 
     @Enumerated(EnumType.STRING)
     private AuthorityType name;
@@ -29,18 +32,16 @@ public class Authority implements Serializable {
     public Authority() {
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Authority authority = (Authority) o;
-        return id.equals(authority.id) &&
-                name == authority.name;
+        return uuid.equals(authority.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(uuid);
     }
 }

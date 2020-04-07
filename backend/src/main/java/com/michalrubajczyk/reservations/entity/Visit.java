@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -18,6 +19,7 @@ public class Visit implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String uuid = UUID.randomUUID().toString();
     private LocalDateTime registrationDateTime;
     private LocalDateTime dateTime;
 
@@ -52,17 +54,12 @@ public class Visit implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Visit visit = (Visit) o;
-        return Objects.equals(id, visit.id) &&
-                Objects.equals(registrationDateTime, visit.registrationDateTime) &&
-                Objects.equals(dateTime, visit.dateTime) &&
-                status == visit.status &&
-                Objects.equals(patient, visit.patient) &&
-                Objects.equals(doctor, visit.doctor);
+        return uuid.equals(visit.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, registrationDateTime, dateTime, status, patient, doctor);
+        return Objects.hash(uuid);
     }
 
     @Override

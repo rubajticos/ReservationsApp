@@ -7,10 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Data
@@ -19,6 +16,8 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String uuid = UUID.randomUUID().toString();
 
     @NotEmpty
     @Column(nullable = false, unique = true)
@@ -48,14 +47,11 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) &&
-                username.equals(user.username) &&
-                password.equals(user.password) &&
-                Objects.equals(dateCreated, user.dateCreated);
+        return uuid.equals(user.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, dateCreated);
+        return Objects.hash(uuid);
     }
 }
