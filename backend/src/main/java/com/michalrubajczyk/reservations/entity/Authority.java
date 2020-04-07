@@ -3,21 +3,16 @@ package com.michalrubajczyk.reservations.entity;
 import com.michalrubajczyk.reservations.types.AuthorityType;
 import lombok.Data;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
+import java.util.Arrays;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Data
-public class Authority implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String uuid = UUID.randomUUID().toString();
+public class Authority extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private AuthorityType name;
@@ -33,15 +28,12 @@ public class Authority implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Authority authority = (Authority) o;
-        return uuid.equals(authority.uuid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid);
+    public String toString() {
+        return "Authority{" +
+                "id=" + super.getId() +
+                ", uuid=" + super.getUuid() +
+                ", name=" + name +
+                ", users=" + Arrays.toString(users.toArray()) +
+                '}';
     }
 }

@@ -1,23 +1,14 @@
 package com.michalrubajczyk.reservations.entity;
 
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Data
-public class User implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String uuid = UUID.randomUUID().toString();
+public class User extends BaseEntity {
 
     @NotEmpty
     @Column(nullable = false, unique = true)
@@ -43,15 +34,15 @@ public class User implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return uuid.equals(user.uuid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid);
+    public String toString() {
+        return "User{" +
+                "id='" + super.getId() + '\'' +
+                ", uuid='" + super.getUuid() + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", authorities=" + Arrays.toString(authorities.toArray()) +
+                ", patient=" + patient +
+                '}';
     }
 }

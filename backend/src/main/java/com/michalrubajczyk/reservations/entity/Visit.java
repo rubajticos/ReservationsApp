@@ -6,20 +6,11 @@ import lombok.Data;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Data
-public class Visit implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String uuid = UUID.randomUUID().toString();
+public class Visit extends BaseEntity {
     private LocalDateTime registrationDateTime;
     private LocalDateTime dateTime;
 
@@ -50,22 +41,10 @@ public class Visit implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Visit visit = (Visit) o;
-        return uuid.equals(visit.uuid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid);
-    }
-
-    @Override
     public String toString() {
         return "Visit{" +
-                "id=" + id +
+                "id=" + super.getId() +
+                ", uuid=" + super.getUuid() +
                 ", registrationDateTime=" + registrationDateTime +
                 ", dateTime=" + dateTime +
                 ", status=" + status +

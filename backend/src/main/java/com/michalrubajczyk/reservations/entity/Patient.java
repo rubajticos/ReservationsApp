@@ -5,22 +5,14 @@ import lombok.Data;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Data
-public class Patient implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String uuid = UUID.randomUUID().toString();
-
+public class Patient extends BaseEntity {
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -44,27 +36,16 @@ public class Patient implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Patient patient = (Patient) o;
-        return uuid.equals(patient.uuid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid);
-    }
-
-    @Override
     public String toString() {
         return "Patient{" +
-                "id=" + id +
+                "id='" + super.getUuid() + '\'' +
+                ", uuid='" + super.getUuid() + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", user=" + user.toString() +
+                ", user=" + user +
+                ", visits=" + Arrays.toString(visits.toArray()) +
                 '}';
     }
 }
