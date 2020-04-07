@@ -200,7 +200,7 @@ class VisitServiceImplTest {
         doctor.setId(1L);
         doctor.setFirstName("A");
         doctor.setLastName("B");
-        doctor.setSpecialization(new Specialization(SpecializationType.PEDIATRICIAN, SpecializationType.PEDIATRICIAN.getName()));
+        doctor.addSpecialization(new Specialization(SpecializationType.PEDIATRICIAN, SpecializationType.PEDIATRICIAN.getName()));
         return doctor;
     }
 

@@ -1,6 +1,8 @@
 package com.michalrubajczyk.reservations.entity;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,6 +23,7 @@ public class Doctor implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "specialization_id")
+    @Setter(AccessLevel.NONE)
     private Specialization specialization;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

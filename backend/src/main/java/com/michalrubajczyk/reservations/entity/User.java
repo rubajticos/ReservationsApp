@@ -1,6 +1,8 @@
 package com.michalrubajczyk.reservations.entity;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

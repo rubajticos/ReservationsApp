@@ -1,7 +1,9 @@
 package com.michalrubajczyk.reservations.entity;
 
 import com.michalrubajczyk.reservations.types.VisitStatus;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,10 +26,12 @@ public class Visit implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
+    @Setter(AccessLevel.NONE)
     private Patient patient;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
+    @Setter(AccessLevel.NONE)
     private Doctor doctor;
 
     public Visit() {
