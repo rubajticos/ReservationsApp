@@ -44,8 +44,7 @@ public class Patient extends BaseEntity {
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", user=" + user +
-                ", visits=" + Arrays.toString(visits.toArray()) +
+                ", user=" + user.toString() +
                 '}';
     }
 }

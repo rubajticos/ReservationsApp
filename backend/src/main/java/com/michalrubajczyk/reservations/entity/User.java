@@ -42,7 +42,6 @@ public class User extends BaseEntity {
                 ", password='" + password + '\'' +
                 ", dateCreated=" + dateCreated +
                 ", authorities=" + Arrays.toString(authorities.toArray()) +
-                ", patient=" + patient +
                 '}';
     }
 }

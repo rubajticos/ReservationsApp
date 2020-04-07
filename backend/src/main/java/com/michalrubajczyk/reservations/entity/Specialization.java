@@ -35,7 +35,6 @@ public class Specialization extends BaseEntity {
                 ", uuid=" + super.getUuid() +
                 ", type=" + type +
                 ", name='" + name + '\'' +
-                ", doctors=" + Arrays.toString(doctors.toArray()) +
                 '}';
     }
 }

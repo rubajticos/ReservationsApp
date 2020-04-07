@@ -48,8 +48,8 @@ public class Visit extends BaseEntity {
                 ", registrationDateTime=" + registrationDateTime +
                 ", dateTime=" + dateTime +
                 ", status=" + status +
-                ", patient=" + patient +
-                ", doctor=" + doctor +
+                ", patient=" + patient.getId() +
+                ", doctor=" + doctor.getId() +
                 '}';
     }
 }

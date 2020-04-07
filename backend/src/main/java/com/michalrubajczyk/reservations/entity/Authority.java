@@ -33,7 +33,6 @@ public class Authority extends BaseEntity {
                 "id=" + super.getId() +
                 ", uuid=" + super.getUuid() +
                 ", name=" + name +
-                ", users=" + Arrays.toString(users.toArray()) +
                 '}';
     }
 }

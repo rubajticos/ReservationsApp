@@ -38,8 +38,7 @@ public class Doctor extends BaseEntity {
                 ", uuid='" + super.getUuid() + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", specialization=" + specialization +
-                ", visits=" + visits +
+                ", specialization=" + specialization.toString() +
                 '}';
     }
 }
