@@ -1,6 +1,6 @@
 package com.michalrubajczyk.reservations.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,8 +15,10 @@ public abstract class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue
+    @EqualsAndHashCode.Exclude
     private Long id;
 
+    @Setter(AccessLevel.NONE)
     private String uuid = UUID.randomUUID().toString();
 
     @Override
