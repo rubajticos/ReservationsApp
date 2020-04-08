@@ -53,8 +53,8 @@ public class VisitServiceImpl implements VisitService {
         visit.setStatus(VisitStatus.valueOf(visitCreationDTO.getStatus()));
         visit.setDateTime(visitCreationDTO.getDateTime());
         visit.setRegistrationDateTime(visitCreationDTO.getRegistationDateTime());
-        visit.setDoctor(findDoctor(visitCreationDTO.getDoctorId()));
-        visit.setPatient(findPatient(visitCreationDTO.getPatientId()));
+        visit.addDoctor(findDoctor(visitCreationDTO.getDoctorId()));
+        visit.addPatient(findPatient(visitCreationDTO.getPatientId()));
 
         return visit;
     }

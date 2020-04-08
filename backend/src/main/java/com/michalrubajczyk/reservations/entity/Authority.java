@@ -2,19 +2,18 @@ package com.michalrubajczyk.reservations.entity;
 
 import com.michalrubajczyk.reservations.types.AuthorityType;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
 import java.util.Set;
 
 @Entity
 @Data
-public class Authority implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@EqualsAndHashCode(callSuper = true, exclude = {"name", "users" })
+public class Authority extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private AuthorityType name;
@@ -29,18 +28,12 @@ public class Authority implements Serializable {
     public Authority() {
     }
 
-
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Authority authority = (Authority) o;
-        return id.equals(authority.id) &&
-                name == authority.name;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
+    public String toString() {
+        return "Authority{" +
+                "id=" + super.getId() +
+                ", uuid=" + super.getUuid() +
+                ", name=" + name +
+                '}';
     }
 }

@@ -96,7 +96,7 @@ class DoctorMapperTest {
         doctor.setId(1L);
         doctor.setFirstName("a");
         doctor.setLastName("b");
-        doctor.setSpecialization(new Specialization(SpecializationType.SURGEON, SpecializationType.SURGEON.getName()));
+        doctor.addSpecialization(new Specialization(SpecializationType.SURGEON, SpecializationType.SURGEON.getName()));
 
         return doctor;
     }
@@ -118,7 +118,7 @@ class DoctorMapperTest {
             d.setId((long) i);
             d.setFirstName("a");
             d.setLastName("b");
-            d.setSpecialization(new Specialization(SpecializationType.SURGEON, SpecializationType.SURGEON.getName()));
+            d.addSpecialization(new Specialization(SpecializationType.SURGEON, SpecializationType.SURGEON.getName()));
 
             doctors.add(d);
         }

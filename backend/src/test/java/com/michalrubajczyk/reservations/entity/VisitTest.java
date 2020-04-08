@@ -38,7 +38,7 @@ class VisitTest {
         p.setFirstName("A");
         p.setLastName("B");
         p.setPhoneNumber("123456789");
-        p.setUser(new User());
+        p.addUser(new User());
 
         return p;
     }
@@ -48,7 +48,7 @@ class VisitTest {
         d.setId(1L);
         d.setFirstName("A");
         d.setLastName("B");
-        d.setSpecialization(new Specialization(SpecializationType.PEDIATRICIAN, SpecializationType.PEDIATRICIAN.getName()));
+        d.addSpecialization(new Specialization(SpecializationType.PEDIATRICIAN, SpecializationType.PEDIATRICIAN.getName()));
 
         return d;
     }

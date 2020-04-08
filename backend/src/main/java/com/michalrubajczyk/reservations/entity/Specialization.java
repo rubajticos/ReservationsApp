@@ -2,19 +2,16 @@ package com.michalrubajczyk.reservations.entity;
 
 import com.michalrubajczyk.reservations.types.SpecializationType;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Data
-public class Specialization implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@EqualsAndHashCode(callSuper = true, exclude = {"type", "name", "doctors"})
+public class Specialization extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private SpecializationType type;
@@ -35,7 +32,8 @@ public class Specialization implements Serializable {
     @Override
     public String toString() {
         return "Specialization{" +
-                "id=" + id +
+                "id=" + super.getId() +
+                ", uuid=" + super.getUuid() +
                 ", type=" + type +
                 ", name='" + name + '\'' +
                 '}';

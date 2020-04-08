@@ -1,29 +1,31 @@
 package com.michalrubajczyk.reservations.entity;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Data
-public class Patient implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@EqualsAndHashCode(callSuper = true, exclude = {"firstName", "lastName", "phoneNumber", "email", "user", "visits"})
+public class Patient extends BaseEntity {
 
     private String firstName;
+
     private String lastName;
+
     private String phoneNumber;
+
     @Column(unique = true)
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Setter(AccessLevel.NONE)
     private User user;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -38,27 +40,10 @@ public class Patient implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Patient patient = (Patient) o;
-        return Objects.equals(id, patient.id) &&
-                Objects.equals(firstName, patient.firstName) &&
-                Objects.equals(lastName, patient.lastName) &&
-                Objects.equals(phoneNumber, patient.phoneNumber) &&
-                Objects.equals(email, patient.email) &&
-                Objects.equals(user, patient.user);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, phoneNumber, email, user);
-    }
-
-    @Override
     public String toString() {
         return "Patient{" +
-                "id=" + id +
+                "id='" + super.getUuid() + '\'' +
+                ", uuid='" + super.getUuid() + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +

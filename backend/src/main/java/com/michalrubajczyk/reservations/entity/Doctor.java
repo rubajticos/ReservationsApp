@@ -1,26 +1,26 @@
 package com.michalrubajczyk.reservations.entity;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
+@EqualsAndHashCode(callSuper = true, exclude = {"firstName", "lastName", "specialization", "visits"})
 @Entity
 @Data
-public class Doctor implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Doctor extends BaseEntity {
 
     private String firstName;
+
     private String lastName;
 
     @ManyToOne
     @JoinColumn(name = "specialization_id")
+    @Setter(AccessLevel.NONE)
     private Specialization specialization;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -35,28 +35,13 @@ public class Doctor implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Doctor doctor = (Doctor) o;
-        return Objects.equals(id, doctor.id) &&
-                Objects.equals(firstName, doctor.firstName) &&
-                Objects.equals(lastName, doctor.lastName) &&
-                Objects.equals(specialization, doctor.specialization);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, specialization);
-    }
-
-    @Override
     public String toString() {
         return "Doctor{" +
-                "id=" + id +
+                "id='" + super.getId() + '\'' +
+                ", uuid='" + super.getUuid() + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", specialization=" + specialization +
+                ", specialization=" + specialization.toString() +
                 '}';
     }
 }

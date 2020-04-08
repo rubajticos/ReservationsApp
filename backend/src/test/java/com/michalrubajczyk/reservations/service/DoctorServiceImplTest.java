@@ -119,7 +119,7 @@ class DoctorServiceImplTest {
         doctor.setId(id);
         doctor.setFirstName(firstName);
         doctor.setLastName(lastName);
-        doctor.setSpecialization(specialization);
+        doctor.addSpecialization(specialization);
 
         return doctor;
     }
