@@ -12,30 +12,25 @@ import java.util.Set;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"username", "password", "dateCreated", "authorities", "patient"})
 public class User extends BaseEntity {
 
     @NotEmpty
     @Column(nullable = false, unique = true)
-    @EqualsAndHashCode.Exclude
     private String username;
 
     @NotEmpty
-    @EqualsAndHashCode.Exclude
     private String password;
 
-    @EqualsAndHashCode.Exclude
     private Date dateCreated;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_id")})
-    @EqualsAndHashCode.Exclude
     private Set<Authority> authorities = new HashSet<>();
 
     @OneToOne(mappedBy = "user")
-    @EqualsAndHashCode.Exclude
     private Patient patient;
 
     public void addAuthority(Authority authority) {

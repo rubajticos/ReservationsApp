@@ -9,25 +9,21 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"firstName", "lastName", "specialization", "visits"})
 @Entity
 @Data
 public class Doctor extends BaseEntity {
 
-    @EqualsAndHashCode.Exclude
     private String firstName;
 
-    @EqualsAndHashCode.Exclude
     private String lastName;
 
     @ManyToOne
     @JoinColumn(name = "specialization_id")
     @Setter(AccessLevel.NONE)
-    @EqualsAndHashCode.Exclude
     private Specialization specialization;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @EqualsAndHashCode.Exclude
     private Set<Visit> visits = new HashSet<>();
 
     public Doctor() {

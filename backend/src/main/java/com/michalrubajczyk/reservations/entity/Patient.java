@@ -11,30 +11,24 @@ import java.util.Set;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"firstName", "lastName", "phoneNumber", "email", "user", "visits"})
 public class Patient extends BaseEntity {
 
-    @EqualsAndHashCode.Exclude
     private String firstName;
 
-    @EqualsAndHashCode.Exclude
     private String lastName;
 
-    @EqualsAndHashCode.Exclude
     private String phoneNumber;
 
-    @EqualsAndHashCode.Exclude
     @Column(unique = true)
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @Setter(AccessLevel.NONE)
-    @EqualsAndHashCode.Exclude
     private User user;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @EqualsAndHashCode.Exclude
     private Set<Visit> visits = new HashSet<>();
 
     public Patient() {

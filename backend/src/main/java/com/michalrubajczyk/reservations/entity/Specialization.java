@@ -10,18 +10,15 @@ import java.util.Set;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"type", "name", "doctors"})
 public class Specialization extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
-    @EqualsAndHashCode.Exclude
     private SpecializationType type;
 
-    @EqualsAndHashCode.Exclude
     private String name;
 
     @OneToMany(mappedBy = "specialization", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @EqualsAndHashCode.Exclude
     private Set<Doctor> doctors = new HashSet<>();
 
     public Specialization(SpecializationType type, String name) {
