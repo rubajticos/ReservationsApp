@@ -20,8 +20,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter implem
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/private", "/api").authenticated()
-                .antMatchers("/", "/public", "/register").permitAll()
-                .antMatchers("/**", "/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll();
+                .antMatchers("/private", "/**").authenticated()
+                .antMatchers("/public", "/register").permitAll()
+                .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll();
     }
 }
