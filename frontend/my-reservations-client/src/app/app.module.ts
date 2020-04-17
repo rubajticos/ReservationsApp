@@ -10,11 +10,12 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { RegisterComponent } from './components/register/register.component';
 import { MustMatchDirective } from './directives/must-match.directive';
 import { RegisterService } from './services/register.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from './services/authentication.service';
+import { TokenInterceptor } from './interceptors/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AuthenticationService } from './services/authentication.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [RegisterService, LoginService, CookieService, AuthenticationService],
+  providers: [RegisterService, LoginService, CookieService, AuthenticationService,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
