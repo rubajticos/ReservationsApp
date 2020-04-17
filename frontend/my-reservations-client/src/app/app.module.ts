@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { CookieService } from 'ngx-cookie-service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [RegisterService, LoginService, CookieService],
+  providers: [RegisterService, LoginService, CookieService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
