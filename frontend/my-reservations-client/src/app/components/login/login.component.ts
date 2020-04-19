@@ -65,13 +65,13 @@ export class LoginComponent implements OnInit {
   private performCountdownAction() {
     this.seconds--;
     if (this.seconds === 0) {
-      this.redirectToHome();
+      this.redirectToVisits();
       this.countdownTimer.unsubscribe();
     }
   }
 
-  public redirectToHome() {
-    this.router.navigate(['/']);
+  public redirectToVisits() {
+    this.router.navigate(['visits']);
   }
 
 }
