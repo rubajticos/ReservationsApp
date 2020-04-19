@@ -16,6 +16,7 @@ import { LoginService } from './services/login.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from './services/authentication.service';
 import { TokenInterceptor } from './interceptors/token-interceptor';
+import { VisitComponent } from './components/visit/visit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TokenInterceptor } from './interceptors/token-interceptor';
     PageNotFoundComponent,
     RegisterComponent,
     MustMatchDirective,
-    LoginComponent
+    LoginComponent,
+    VisitComponent
   ],
   imports: [
     BrowserModule,
