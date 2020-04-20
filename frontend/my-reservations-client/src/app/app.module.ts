@@ -17,6 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from './services/authentication.service';
 import { TokenInterceptor } from './interceptors/token-interceptor';
 import { VisitComponent } from './components/visit/visit.component';
+import { PatientService } from './services/patient.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { VisitComponent } from './components/visit/visit.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [RegisterService, LoginService, CookieService, AuthenticationService,
+  providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

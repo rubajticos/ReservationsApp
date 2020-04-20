@@ -5,6 +5,7 @@ import { AuthorizationModel } from 'src/app/model/authorization-model';
 import { Router } from '@angular/router';
 import { timer, Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,10 @@ export class LoginComponent implements OnInit {
   seconds = 5;
   countdownTimer: Subscription;
 
-  constructor(private loginService: LoginService, private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private loginService: LoginService,
+              private authenticationService: AuthenticationService,
+              private patientService: PatientService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -37,6 +41,7 @@ export class LoginComponent implements OnInit {
           this.loading = false;
           this.displaySuccess = true;
           this.saveTokens(data);
+          this.patientService.getLoggedPatient();
           this.startRedirectCountdown();
         },
         (error: HttpErrorResponse) => {
