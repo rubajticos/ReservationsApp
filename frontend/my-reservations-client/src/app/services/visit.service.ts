@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { PatientService } from './patient.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Visit } from '../model/visit';
 import { HttpVisitService } from './http/http-visit.service';
@@ -10,8 +7,6 @@ import { HttpVisitService } from './http/http-visit.service';
   providedIn: 'root'
 })
 export class VisitService {
-
-  readonly visitsForPatientURL = environment.apiBaseUrl + 'visit/patient=' ;
 
   private visitsListObs = new BehaviorSubject<Array<Visit>>([]);
 
@@ -23,7 +18,7 @@ export class VisitService {
     });
   }
 
-  getVisitsObs(): Observable<Array<Visit>> {
+  public getVisitsObs(): Observable<Array<Visit>> {
     return this.visitsListObs.asObservable();
   }
 

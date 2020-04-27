@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VisitService } from 'src/app/services/visit.service';
+import { Visit } from 'src/app/model/visit';
 
 @Component({
   selector: 'app-visit',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisitComponent implements OnInit {
 
-  constructor() { }
+  visitsList: Array<Visit> = [];
+
+  constructor(private visitService: VisitService) {
+    this.visitService.getVisitsForPatient();
+    this.visitService.getVisitsObs().subscribe(visits => {
+      this.visitsList = visits;
+      console.log(JSON.stringify(this.visitsList));
+    });
+  }
 
   ngOnInit() {
   }
