@@ -22,4 +22,8 @@ export class VisitComponent implements OnInit {
   ngOnInit() {
   }
 
+  public printVisit(visit: Visit): string {
+    return JSON.stringify(visit);
+  }
+
 }

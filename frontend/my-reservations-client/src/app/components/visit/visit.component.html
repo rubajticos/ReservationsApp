@@ -1,1 +1,26 @@
-<p>visit works!</p>
+<h1>My Visits</h1>
+
+<div class="d-flex flex-row justify-content-center">
+    <div class="p-2">
+        <ng-container>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Doctor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let visit of visitsList; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{visit.dateTime}}</td>
+                        <td>{{visit.status}}</td>
+                        <td>{{visit.doctor.firstName}} {{visit.doctor.lastName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-container>
+    </div>
+</div>
