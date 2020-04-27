@@ -15,7 +15,7 @@
                 <tbody>
                     <tr *ngFor="let visit of visitsList; let i = index">
                         <th scope="row">{{i+1}}</th>
-                        <td>{{visit.dateTime}}</td>
+                        <td>{{visit.dateTime | date: 'd.MM.yyyy HH:mm'}}</td>
                         <td>{{visit.status}}</td>
                         <td>{{visit.doctor.firstName}} {{visit.doctor.lastName}}</td>
                     </tr>
