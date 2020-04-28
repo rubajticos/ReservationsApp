@@ -15,11 +15,20 @@ export class PatientService {
   private patient: Patient;
 
   public getLoggedPatient(): void {
-    this.http.get(this.patientURL).subscribe((data: Patient) => this.patient = data);
+    this.http.get(this.patientURL).subscribe((data: Patient) => {
+       this.patient = data;
+       localStorage.setItem('patient', JSON.stringify(data));
+       localStorage.setItem('patientId', data.id.toString());
+       }
+    );
+  }
+
+  public loggedPatientId(): string {
+    return localStorage.getItem('patientId');
   }
 
   public loggedPatient(): Patient {
-    return this.patient;
+    return JSON.parse(localStorage.getItem('patient'));
   }
 
 }

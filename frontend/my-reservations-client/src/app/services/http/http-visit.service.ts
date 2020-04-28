@@ -15,7 +15,7 @@ export class HttpVisitService {
   constructor(private http: HttpClient, private patientService: PatientService) { }
 
   public getVisitsForPatient(): Observable<Array<Visit>> {
-    const patientId = this.patientService.loggedPatient().id;
+    const patientId = this.patientService.loggedPatientId();
     return this.http.get<Array<Visit>>(this.visitsForPatientURL + patientId);
   }
 
