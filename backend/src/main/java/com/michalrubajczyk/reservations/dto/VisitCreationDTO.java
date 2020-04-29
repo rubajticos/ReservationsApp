@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Builder
 public class VisitCreationDTO {
 
-    @NotNull(message = "Id is mandatory")
     private Long id;
 
     @NotNull(message = "Registration date and time is mandatory")
