@@ -1,11 +1,4 @@
-<div class="alert alert-success" role="alert" [hidden]="!registerSuccess">
-  <span>Success! You are registered succesfully!</span>
-</div>
-
-<div class="alert alert-danger" role="alert" [hidden]="!registerError">
-  <span>Sorry, an error occured. Please try again</span><br>
-  <span>{{error}}</span>
-</div>
+<app-alertinfo></app-alertinfo>
 
 <div class="d-flex flex-row justify-content-center">
   <div class="spinner-border text-primary" role="status" [hidden]="!loading">
@@ -14,7 +7,7 @@
 </div>
 
 <div class="d-flex flex-row justify-content-center">
-  <div class="p-2" [hidden]="registerSuccess">
+  <div class="p-2" [hidden]="hideForm">
     <form [appMustMatch]="['password', 'confirmPassword']" #registerForm="ngForm">
       <div class="form-group">
         <label for="username">Username</label>
@@ -94,7 +87,7 @@
 </div>
 
 <div class="d-flex flex-row justify-content-center">
-  <div class="p-2" [hidden]="!registerSuccess">
+  <div class="p-2" [hidden]="!displayRegisteredData">
     <h2>You registered with the following:</h2>
     <div class="d-flex flex-row">
       <div class="p-2 registeredLabel">Username:</div>
