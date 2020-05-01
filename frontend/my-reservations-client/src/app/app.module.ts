@@ -20,6 +20,7 @@ import { VisitComponent } from './components/visit/visit.component';
 import { PatientService } from './services/patient.service';
 import { HttpVisitService } from './services/http/http-visit.service';
 import { VisitService } from './services/visit.service';
+import { AlertinfoComponent } from './components/alertinfo/alertinfo.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { VisitService } from './services/visit.service';
     RegisterComponent,
     MustMatchDirective,
     LoginComponent,
-    VisitComponent
+    VisitComponent,
+    AlertinfoComponent
   ],
   imports: [
     BrowserModule,
