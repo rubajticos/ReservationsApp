@@ -1,1 +1,8 @@
-<p>alertinfo works!</p>
+<div class="alert alert-success" role="alert" [hidden]="!displaySuccess">
+  <span>{{successMessage}}</span>
+</div>
+
+<div class="alert alert-danger" role="alert" [hidden]="!displayError">
+  <span>Sorry, an error occured.</span><br>
+  <span>{{errorMessage}}</span>
+</div>
