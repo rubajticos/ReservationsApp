@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { HttpErrorResponse, HttpResponse, HttpEvent } from '@angular/common/http';
 import { AuthorizationModel } from 'src/app/model/authorization-model';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { timer, Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { PatientService } from 'src/app/services/patient.service';
+import { AlertInfoComponent } from '../alertinfo/alertinfo.component';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,12 @@ import { PatientService } from 'src/app/services/patient.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild(AlertInfoComponent, { static: false }) alertInfo;
 
   username: string;
   password: string;
 
-  displaySuccess = false;
-  displayError = false;
-  errorMessage: string;
+  displayRedirectingInfo = false;
   loading = false;
   seconds = 5;
   countdownTimer: Subscription;
@@ -39,22 +39,21 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (data: AuthorizationModel) => {
           this.loading = false;
-          this.displaySuccess = true;
+          this.displayLoginSuccess();
           this.saveTokens(data);
           this.patientService.getLoggedPatient();
           this.startRedirectCountdown();
         },
         (error: HttpErrorResponse) => {
           this.loading = false;
-          this.displayError = true;
-          this.errorMessage = error.error.message;
+          this.displayLoginError(error.error.error_description);
         }
       );
   }
 
   private resetInfo(): void {
-    this.displaySuccess = false;
-    this.displayError = false;
+    this.displayRedirectingInfo = false;
+    this.alertInfo.clear();
   }
 
   private saveTokens(authModel: AuthorizationModel) {
@@ -77,6 +76,15 @@ export class LoginComponent implements OnInit {
 
   public redirectToVisits() {
     this.router.navigate(['visits']);
+  }
+
+  private displayLoginSuccess() {
+    this.displayRedirectingInfo = true;
+    this.alertInfo.showSuccess('Success! You are logged succesfully!');
+  }
+  private displayLoginError(error: string) {
+    this.displayRedirectingInfo = false;
+    this.alertInfo.showError(error);
   }
 
 }
