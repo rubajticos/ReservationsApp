@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "my-reservations-client"
+    }
+  },
+  "defaultProject": "my-reservations-client",
+  "cli": {
+    "analytics": "5f8a1260-750b-4f47-82b2-460c52c6d335"
+  }
 }
