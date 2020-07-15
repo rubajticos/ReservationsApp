@@ -23,6 +23,7 @@ import { VisitService } from './services/visit.service';
 import { AlertInfoComponent } from './components/alertinfo/alertinfo.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddVisitComponent } from './components/add-visit/add-visit.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MustMatchDirective,
     LoginComponent,
     VisitComponent,
-    AlertInfoComponent
+    AlertInfoComponent,
+    AddVisitComponent
   ],
   imports: [
     BrowserModule,
