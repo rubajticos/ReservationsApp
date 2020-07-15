@@ -24,6 +24,8 @@ import { AlertInfoComponent } from './components/alertinfo/alertinfo.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddVisitComponent } from './components/add-visit/add-visit.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { AddVisitComponent } from './components/add-visit/add-visit.component';
     FormsModule,
     HttpClientModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
     BrowserAnimationsModule
   ],
   providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService, VisitService, HttpVisitService,

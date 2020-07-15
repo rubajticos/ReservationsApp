@@ -2,32 +2,34 @@
 
 <div class="d-flex flex-row justify-content-center">
     <div class="p-2">
-      <form #addVisitForm="ngForm">
-        <div class="form-group">
-          <label for="doctorInput">Doctor</label>
-          <input type="text" class="form-control" id="doctor" placeholder="Choose a doctor" required [(ngModel)]="doctor"
-            name="doctor" #doctorInput="ngModel">
-        </div>
-        <div class="form-group">
-          <label for="datetimeInput">Datetime</label>
-          <input type="text" class="form-control" id="datetime" placeholder="Choose a date" required
-            [(ngModel)]="datetime" name="datetime" #datetimeInput="ngModel">
-        </div>
-      </form>
+        <form #addVisitForm="ngForm">
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Doctor</mat-label>
+                    <mat-select class="form-control" id="doctor" required
+                        [(ngModel)]="doctor" name="doctor" #doctorInput="ngModel">
+                        <mat-option value="option">Option</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <label for="datetimeInput">Datetime</label>
+                <input type="text" class="form-control" id="datetime" placeholder="Choose a date" required
+                    [(ngModel)]="datetime" name="datetime" #datetimeInput="ngModel">
+            </div>
+        </form>
     </div>
-  </div>
-  
-  <div class="d-flex flex-row justify-content-center">
+</div>
+
+<div class="d-flex flex-row justify-content-center">
     <div class="p-2">
-      <button type="submit" class="btn btn-primary btn-lg btn-block"
-        (click)="registerVisit()">
-        Register
-      </button>
-    </div>
-    <div class="p-2">
-        <button type="submit" class="btn btn-primary btn-lg btn-block"
-          (click)="cancel()">
-          Cancel
+        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="registerVisit()">
+            Register
         </button>
-      </div>
-  </div>
+    </div>
+    <div class="p-2">
+        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="cancel()">
+            Cancel
+        </button>
+    </div>
+</div>

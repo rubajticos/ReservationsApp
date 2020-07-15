@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { DoctorService } from 'src/app/services/doctor.service';
+import { Doctor } from 'src/app/model/doctor';
+
 
 @Component({
   selector: 'app-add-visit',
@@ -10,10 +13,14 @@ export class AddVisitComponent implements OnInit {
 
   doctor: string;
   datetime: string;
+  doctors: Array<Doctor>;
 
-  constructor(public dialogRef: MatDialogRef<AddVisitComponent>) { }
+  constructor(public dialogRef: MatDialogRef<AddVisitComponent>, private doctorsProvider: DoctorService) { }
 
   ngOnInit() {
+    this.doctorsProvider.getDoctorsObs().subscribe(doctors => {
+      this.doctors = doctors;
+    });
   }
 
   registerVisit() {
