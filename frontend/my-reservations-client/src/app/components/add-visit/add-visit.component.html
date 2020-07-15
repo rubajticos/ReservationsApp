@@ -10,8 +10,8 @@
         </div>
         <div class="form-group">
           <label for="datetimeInput">Datetime</label>
-          <input type="text" class="form-control" id="visitDateTime" placeholder="Choose a date" required
-            [(ngModel)]="visitDateTime" name="visitDateTime" #datetimeInput="ngModel">
+          <input type="text" class="form-control" id="datetime" placeholder="Choose a date" required
+            [(ngModel)]="datetime" name="datetime" #datetimeInput="ngModel">
         </div>
       </form>
     </div>
@@ -20,13 +20,13 @@
   <div class="d-flex flex-row justify-content-center">
     <div class="p-2">
       <button type="submit" class="btn btn-primary btn-lg btn-block"
-        (click)="onSubmit()">
+        (click)="registerVisit()">
         Register
       </button>
     </div>
     <div class="p-2">
         <button type="submit" class="btn btn-primary btn-lg btn-block"
-          (click)="onSubmit()">
+          (click)="cancel()">
           Cancel
         </button>
       </div>

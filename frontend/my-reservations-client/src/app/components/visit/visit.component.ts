@@ -34,7 +34,11 @@ export class VisitComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
-    this.dialog.open(AddVisitComponent, dialogConfig);
+    const dialogRef = this.dialog.open(AddVisitComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => console.log("Dialog output: " + JSON.stringify(data))
+    );
   }
 
 }

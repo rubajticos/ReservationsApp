@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-visit',
@@ -10,10 +11,22 @@ export class AddVisitComponent implements OnInit {
   doctor: string;
   datetime: string;
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<AddVisitComponent>) { }
 
   ngOnInit() {
   }
 
+  registerVisit() {
+    this.dialogRef.close(
+      {
+        doctor: this.doctor,
+        datetime: this.datetime
+      }
+    );
+  }
+
+  cancel() {
+    this.dialogRef.close();
+  }
 
 }
