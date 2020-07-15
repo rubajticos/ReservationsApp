@@ -36,4 +36,8 @@ export class AddVisitComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  public getDoctorDisplayName(doctor: Doctor) {
+    return doctor.firstName + ' ' + doctor.lastName + ' - ' + doctor.specialization.name;
+  }
+
 }

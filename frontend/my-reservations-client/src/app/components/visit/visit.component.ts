@@ -31,7 +31,7 @@ export class VisitComponent implements OnInit {
   public showAddVisit() {
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
     const dialogRef = this.dialog.open(AddVisitComponent, dialogConfig);

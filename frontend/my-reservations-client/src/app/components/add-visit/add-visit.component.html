@@ -8,7 +8,7 @@
                     <mat-label>Doctor</mat-label>
                     <mat-select class="form-control" id="doctor" required
                         [(ngModel)]="doctor" name="doctor" #doctorInput="ngModel">
-                        <mat-option value="option">Option</mat-option>
+                        <mat-option *ngFor="let doctor of doctors;" value="{{doctor.id}}">{{getDoctorDisplayName(doctor)}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
