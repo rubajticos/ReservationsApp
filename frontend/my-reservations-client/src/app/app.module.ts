@@ -48,6 +48,7 @@ import { AddVisitComponent } from './components/add-visit/add-visit.component';
   ],
   providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService, VisitService, HttpVisitService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddVisitComponent]
 })
 export class AppModule { }

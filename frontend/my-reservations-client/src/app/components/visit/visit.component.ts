@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VisitService } from 'src/app/services/visit.service';
 import { Visit } from 'src/app/model/visit';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddVisitComponent } from '../add-visit/add-visit.component';
 
 @Component({
   selector: 'app-visit',
@@ -11,7 +13,7 @@ export class VisitComponent implements OnInit {
 
   visitsList: Array<Visit> = [];
 
-  constructor(private visitService: VisitService) {
+  constructor(private visitService: VisitService, private dialog: MatDialog) {
     this.visitService.getVisitsForPatient();
     this.visitService.getVisitsObs().subscribe(visits => {
       this.visitsList = visits;
@@ -27,7 +29,12 @@ export class VisitComponent implements OnInit {
   }
 
   public showAddVisit() {
-    console.log("Add visit!");
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open(AddVisitComponent, dialogConfig);
   }
 
 }
