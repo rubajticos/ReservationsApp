@@ -1,1 +1,33 @@
-<p>Add visit will be here :)</p>
+<h2 mat-dialog-title>Register to your new visit</h2>
+
+<div class="d-flex flex-row justify-content-center">
+    <div class="p-2">
+      <form #addVisitForm="ngForm">
+        <div class="form-group">
+          <label for="doctorInput">Doctor</label>
+          <input type="text" class="form-control" id="doctor" placeholder="Choose a doctor" required [(ngModel)]="doctor"
+            name="doctor" #doctorInput="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="datetimeInput">Datetime</label>
+          <input type="text" class="form-control" id="visitDateTime" placeholder="Choose a date" required
+            [(ngModel)]="visitDateTime" name="visitDateTime" #datetimeInput="ngModel">
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="d-flex flex-row justify-content-center">
+    <div class="p-2">
+      <button type="submit" class="btn btn-primary btn-lg btn-block"
+        (click)="onSubmit()">
+        Register
+      </button>
+    </div>
+    <div class="p-2">
+        <button type="submit" class="btn btn-primary btn-lg btn-block"
+          (click)="onSubmit()">
+          Cancel
+        </button>
+      </div>
+  </div>

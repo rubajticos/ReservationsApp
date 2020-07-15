@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddVisitComponent implements OnInit {
 
+  doctor: string;
+  datetime: string;
+
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }
