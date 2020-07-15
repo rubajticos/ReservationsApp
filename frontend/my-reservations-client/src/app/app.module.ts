@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddVisitComponent } from './components/add-visit/add-visit.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import { DoctorService } from './services/doctor.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserAnimationsModule
   ],
   providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService, VisitService, HttpVisitService,
+    DoctorService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent],
   entryComponents: [AddVisitComponent]

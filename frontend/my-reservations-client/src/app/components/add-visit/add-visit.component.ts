@@ -18,7 +18,7 @@ export class AddVisitComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<AddVisitComponent>, private doctorsProvider: DoctorService) { }
 
   ngOnInit() {
-    this.doctorsProvider.getDoctorsObs().subscribe(doctors => {
+    this.doctorsProvider.getDoctors().subscribe(doctors => {
       this.doctors = doctors;
     });
   }
