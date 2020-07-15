@@ -21,6 +21,8 @@ import { PatientService } from './services/patient.service';
 import { HttpVisitService } from './services/http/http-visit.service';
 import { VisitService } from './services/visit.service';
 import { AlertInfoComponent } from './components/alertinfo/alertinfo.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AlertInfoComponent } from './components/alertinfo/alertinfo.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService, VisitService, HttpVisitService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
