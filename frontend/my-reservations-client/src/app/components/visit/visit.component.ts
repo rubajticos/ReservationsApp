@@ -26,4 +26,8 @@ export class VisitComponent implements OnInit {
     return JSON.stringify(visit);
   }
 
+  public showAddVisit() {
+    console.log("Add visit!");
+  }
+
 }
