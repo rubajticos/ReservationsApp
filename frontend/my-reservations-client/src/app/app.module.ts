@@ -21,11 +21,14 @@ import { PatientService } from './services/patient.service';
 import { HttpVisitService } from './services/http/http-visit.service';
 import { VisitService } from './services/visit.service';
 import { AlertInfoComponent } from './components/alertinfo/alertinfo.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddVisitComponent } from './components/add-visit/add-visit.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 import { DoctorService } from './services/doctor.service';
 
 @NgModule({
@@ -49,11 +52,14 @@ import { DoctorService } from './services/doctor.service';
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
     BrowserAnimationsModule
   ],
   providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService, VisitService, HttpVisitService,
     DoctorService,
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent],
   entryComponents: [AddVisitComponent]
 })

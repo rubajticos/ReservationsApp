@@ -12,7 +12,7 @@ import { Doctor } from 'src/app/model/doctor';
 export class AddVisitComponent implements OnInit {
 
   doctor: string;
-  datetime: string;
+  date: string;
   doctors: Array<Doctor>;
 
   constructor(public dialogRef: MatDialogRef<AddVisitComponent>, private doctorsProvider: DoctorService) { }
@@ -27,7 +27,7 @@ export class AddVisitComponent implements OnInit {
     this.dialogRef.close(
       {
         doctor: this.doctor,
-        datetime: this.datetime
+        date: this.date
       }
     );
   }
