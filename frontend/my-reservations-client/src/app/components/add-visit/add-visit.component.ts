@@ -10,13 +10,17 @@ import { Doctor } from 'src/app/model/doctor';
   styleUrls: ['./add-visit.component.scss']
 })
 export class AddVisitComponent implements OnInit {
+  minDate: Date;
 
   doctor: string;
   date: string;
   time: string;
   doctors: Array<Doctor>;
 
-  constructor(public dialogRef: MatDialogRef<AddVisitComponent>, private doctorsProvider: DoctorService) { }
+  constructor(public dialogRef: MatDialogRef<AddVisitComponent>, private doctorsProvider: DoctorService) {
+    this.minDate = new Date();
+    this.minDate.setDate(this.minDate.getDate() + 1);
+  }
 
   ngOnInit() {
     this.doctorsProvider.getDoctors().subscribe(doctors => {
