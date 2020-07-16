@@ -27,7 +27,8 @@ import { AddVisitComponent } from './components/add-visit/add-visit.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MatInputModule } from '@angular/material/input';
 import { DoctorService } from './services/doctor.service';
 
@@ -53,14 +54,15 @@ import { DoctorService } from './services/doctor.service';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule,
+    MatMomentDateModule,
     MatInputModule,
     BrowserAnimationsModule
   ],
   providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService, VisitService, HttpVisitService,
     DoctorService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' }],
+    { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }],
   bootstrap: [AppComponent],
   entryComponents: [AddVisitComponent]
 })
