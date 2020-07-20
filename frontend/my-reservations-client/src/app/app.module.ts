@@ -31,6 +31,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MatInputModule } from '@angular/material/input';
 import { DoctorService } from './services/doctor.service';
+import { NgxMatDatetimePickerModule } from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { DoctorService } from './services/doctor.service';
     MatDatepickerModule,
     MatMomentDateModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxMatDatetimePickerModule
   ],
   providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService, VisitService, HttpVisitService,
     DoctorService,

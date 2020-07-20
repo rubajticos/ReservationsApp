@@ -12,7 +12,7 @@ import { AlertInfoComponent } from '../alertinfo/alertinfo.component';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  @ViewChild(AlertInfoComponent, { static: false }) alertInfo;
+  @ViewChild(AlertInfoComponent) alertInfo;
 
   phoneNumberPattern = '\\d+';
   model = new RegisterModel(new UserRegister(), new Patient());
