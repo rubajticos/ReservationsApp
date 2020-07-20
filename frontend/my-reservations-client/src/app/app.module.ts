@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavheaderComponent } from './components/navheader/navheader.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -31,7 +31,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MatInputModule } from '@angular/material/input';
 import { DoctorService } from './services/doctor.service';
-import { NgxMatDatetimePickerModule } from '@angular-material-components/datetime-picker';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -50,6 +50,7 @@ import { NgxMatDatetimePickerModule } from '@angular-material-components/datetim
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -58,7 +59,8 @@ import { NgxMatDatetimePickerModule } from '@angular-material-components/datetim
     MatMomentDateModule,
     MatInputModule,
     BrowserAnimationsModule,
-    NgxMatDatetimePickerModule
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule
   ],
   providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService, VisitService, HttpVisitService,
     DoctorService,

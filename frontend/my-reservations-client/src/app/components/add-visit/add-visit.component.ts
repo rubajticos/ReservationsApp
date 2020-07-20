@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { Doctor } from 'src/app/model/doctor';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -10,16 +11,19 @@ import { Doctor } from 'src/app/model/doctor';
   styleUrls: ['./add-visit.component.scss']
 })
 export class AddVisitComponent implements OnInit {
+  @ViewChild('picker') picker: any;
+
+  public showSpinners = true;
+  public stepHour = 1;
+  public stepMinute = 30;
   minDate: Date;
 
+  doctors: Array<Doctor>;
   doctor: string;
   date: string;
-  time: string;
-  doctors: Array<Doctor>;
 
   constructor(public dialogRef: MatDialogRef<AddVisitComponent>, private doctorsProvider: DoctorService) {
-    this.minDate = new Date();
-    this.minDate.setDate(this.minDate.getDate() + 1);
+    this.setMinDate();
   }
 
   ngOnInit() {
@@ -32,8 +36,7 @@ export class AddVisitComponent implements OnInit {
     this.dialogRef.close(
       {
         doctor: this.doctor,
-        date: this.date,
-        time: this.time
+        date: this.date
       }
     );
   }
@@ -46,10 +49,9 @@ export class AddVisitComponent implements OnInit {
     return doctor.firstName + ' ' + doctor.lastName + ' - ' + doctor.specialization.name;
   }
 
-  public getAvailableHours(): string[] {
-    return ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30',
-      '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00',
-      '14:30', '15:00', '15:30'];
+  private setMinDate() {
+    this.minDate = new Date();
+    this.minDate.setDate(this.minDate.getDate() + 1);
   }
 
 }
