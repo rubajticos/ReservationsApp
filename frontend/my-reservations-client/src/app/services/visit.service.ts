@@ -22,4 +22,8 @@ export class VisitService {
     return this.visitsListObs.asObservable();
   }
 
+  public saveVisit(visit: VisitCreationData): Observable<any> {
+    return this.httpVisitService.createVisit(visit);
+  }
+
 }

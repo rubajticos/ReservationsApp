@@ -3,6 +3,9 @@ import { VisitService } from 'src/app/services/visit.service';
 import { Visit } from 'src/app/model/visit';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddVisitComponent } from '../add-visit/add-visit.component';
+import { PatientService } from 'src/app/services/patient.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-visit',
@@ -13,7 +16,8 @@ export class VisitComponent implements OnInit {
 
   visitsList: Array<Visit> = [];
 
-  constructor(private visitService: VisitService, private dialog: MatDialog) {
+  constructor(
+    private visitService: VisitService, private patientService: PatientService, private dialog: MatDialog, private datepipe: DatePipe) {
     this.visitService.getVisitsForPatient();
     this.visitService.getVisitsObs().subscribe(visits => {
       this.visitsList = visits;
@@ -37,8 +41,28 @@ export class VisitComponent implements OnInit {
     const dialogRef = this.dialog.open(AddVisitComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-      data => console.log("Dialog output: " + JSON.stringify(data))
+      data => {
+        this.createVisit(data);
+        console.log('Dialog output: ' + JSON.stringify(data));
+      }
     );
+  }
+
+  createVisit(data: VisitCreationData) {
+    const dataForRegister = data;
+    dataForRegister.registrationDateTime = this.datepipe.transform(new Date(), 'yyyy-MM-ddTHH:mm:ss');
+    dataForRegister.status = 'NEW';
+    dataForRegister.patientId = this.patientService.loggedPatientId();
+
+    this.visitService.saveVisit(dataForRegister)
+      .subscribe(success => {
+        console.log('Visit added');
+        // this.showRegisterSuccess();
+      },
+        (error: HttpErrorResponse) => {
+          console.log(error.error.message);
+        });
+
   }
 
 }

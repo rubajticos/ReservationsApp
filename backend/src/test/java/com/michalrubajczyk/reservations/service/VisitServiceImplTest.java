@@ -74,7 +74,7 @@ class VisitServiceImplTest {
 
         assertThat(result.getId(), equalTo(1L));
         assertThat(result.getDateTime(), equalTo(model.visitCreationDTO.getDateTime()));
-        assertThat(result.getRegistationDateTime(), equalTo(model.visitCreationDTO.getRegistationDateTime()));
+        assertThat(result.getRegistationDateTime(), equalTo(model.visitCreationDTO.getRegistrationDateTime()));
         assertThat(result.getStatus(), equalTo(VisitStatus.REGISTERED.toString()));
         assertThat(result.getDoctor().getId(), equalTo(model.visitCreationDTO.getDoctorId()));
         assertThat(result.getPatient().getId(), equalTo(model.visitCreationDTO.getPatientId()));
@@ -180,7 +180,7 @@ class VisitServiceImplTest {
                 .dateTime(visitDate)
                 .doctorId(1L)
                 .patientId(1L)
-                .registationDateTime(now)
+                .registrationDateTime(now)
                 .status(VisitStatus.NEW.toString())
                 .build();
 

@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { Doctor } from 'src/app/model/doctor';
 import { FormControl } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -20,9 +21,9 @@ export class AddVisitComponent implements OnInit {
 
   doctors: Array<Doctor>;
   doctor: string;
-  date: string;
+  date: Date;
 
-  constructor(public dialogRef: MatDialogRef<AddVisitComponent>, private doctorsProvider: DoctorService) {
+  constructor(public dialogRef: MatDialogRef<AddVisitComponent>, private doctorsProvider: DoctorService, private datepipe: DatePipe) {
     this.setMinDate();
   }
 
@@ -35,8 +36,8 @@ export class AddVisitComponent implements OnInit {
   registerVisit() {
     this.dialogRef.close(
       {
-        doctor: this.doctor,
-        date: this.date
+        doctorId: this.doctor,
+        dateTime: this.datepipe.transform(this.date, 'yyyy-MM-ddTHH:mm:ss')
       }
     );
   }
