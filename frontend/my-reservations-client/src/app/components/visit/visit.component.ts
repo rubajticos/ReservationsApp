@@ -6,6 +6,7 @@ import { AddVisitComponent } from '../add-visit/add-visit.component';
 import { PatientService } from 'src/app/services/patient.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-visit',
@@ -17,7 +18,8 @@ export class VisitComponent implements OnInit {
   visitsList: Array<Visit> = [];
 
   constructor(
-    private visitService: VisitService, private patientService: PatientService, private dialog: MatDialog, private datepipe: DatePipe) {
+    private visitService: VisitService, private patientService: PatientService,
+    private dialog: MatDialog, private datepipe: DatePipe, private snackBar: MatSnackBar) {
     this.visitService.getVisitsForPatient();
     this.visitService.getVisitsObs().subscribe(visits => {
       this.visitsList = visits;
@@ -56,13 +58,16 @@ export class VisitComponent implements OnInit {
 
     this.visitService.saveVisit(dataForRegister)
       .subscribe(success => {
-        console.log('Visit added');
-        // this.showRegisterSuccess();
+        this.showAddVisitSuccess();
+        this.visitService.getVisitsForPatient();
       },
         (error: HttpErrorResponse) => {
           console.log(error.error.message);
         });
 
+  }
+  showAddVisitSuccess() {
+    let snackBarRef = this.snackBar.open('The visis has been registered!');
   }
 
 }

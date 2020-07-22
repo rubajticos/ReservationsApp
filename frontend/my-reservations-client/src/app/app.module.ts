@@ -33,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DoctorService } from './services/doctor.service';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import { DatePipe } from '@angular/common';
     NgxMatNativeDateModule
   ],
   providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService, VisitService, HttpVisitService,
-    DoctorService, DatePipe,
+    DoctorService, DatePipe, MatSnackBar,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }],
