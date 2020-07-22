@@ -16,13 +16,28 @@
                 </mat-form-field>
             </div>
             <div class="form-group">
-                <mat-form-field>
-                    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a visit date and time"
-                       [min]="minDate" required name="visitDate" [(ngModel)]="date">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" [min]="minDate" required id="date" [(ngModel)]="date"
+                        name="visitDate" #dateModel="ngModel">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [stepHour]="stepHour"
-                        [stepMinute]="stepMinute">
-                    </ngx-mat-datetime-picker>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="dateModel.invalid && (dateModel.dirty || dateModel.touched)">
+                        You have to choose a visit date
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Hour</mat-label>
+                    <mat-select class="form-control" id="time" required [(ngModel)]="hour" name="hour"
+                        #hourInput="ngModel">
+                        <mat-option *ngFor="let hour of getAvailableHours();" value="{{hour}}">
+                            {{hour}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="hourInput.invalid && (hourInput.dirty || hourInput.touched)">
+                        You have to choose a visit hour
+                    </mat-error>
                 </mat-form-field>
             </div>
         </form>

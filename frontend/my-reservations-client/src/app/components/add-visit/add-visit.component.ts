@@ -3,7 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { Doctor } from 'src/app/model/doctor';
 import { FormControl } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Time } from '@angular/common';
+import { Moment } from 'moment';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class AddVisitComponent implements OnInit {
 
   doctors: Array<Doctor>;
   doctor: string;
-  date: Date;
+  date: Moment;
+  hour: string;
 
   constructor(public dialogRef: MatDialogRef<AddVisitComponent>, private doctorsProvider: DoctorService, private datepipe: DatePipe) {
     this.setMinDate();
@@ -34,12 +36,21 @@ export class AddVisitComponent implements OnInit {
   }
 
   registerVisit() {
+    const visitDate = this.buildVisitDate();
     this.dialogRef.close(
       {
         doctorId: this.doctor,
-        dateTime: this.datepipe.transform(this.date, 'yyyy-MM-ddTHH:mm:ss')
+        dateTime: this.datepipe.transform(visitDate, 'yyyy-MM-ddTHH:mm:ss')
       }
     );
+  }
+
+  private buildVisitDate() {
+    const visitDate = this.date.toDate();
+    const [hours, minutes] = this.hour.split(':');
+    visitDate.setHours(+hours);
+    visitDate.setMinutes(+minutes);
+    return visitDate;
   }
 
   cancel() {
@@ -53,6 +64,12 @@ export class AddVisitComponent implements OnInit {
   private setMinDate() {
     this.minDate = new Date();
     this.minDate.setDate(this.minDate.getDate() + 1);
+  }
+
+  public getAvailableHours(): string[] {
+    return ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30',
+      '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00',
+      '14:30', '15:00', '15:30'];
   }
 
 }
