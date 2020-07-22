@@ -65,13 +65,19 @@ export class VisitComponent implements OnInit {
         this.loading = false;
       },
         (error: HttpErrorResponse) => {
+          this.showAddVisitError(error.error.message);
           console.log(error.error.message);
+          this.loading = false;
         });
 
   }
-  
+
   showAddVisitSuccess() {
-    let snackBarRef = this.snackBar.open('The visit has been registered!');
+    this.snackBar.open('The visit has been registered!');
+  }
+
+  showAddVisitError(info: string) {
+    this.snackBar.open(info);
   }
 
 }
