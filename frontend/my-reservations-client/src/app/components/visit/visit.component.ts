@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class VisitComponent implements OnInit {
 
   visitsList: Array<Visit> = [];
+  loading = false;
 
   constructor(
     private visitService: VisitService, private patientService: PatientService,
@@ -51,6 +52,7 @@ export class VisitComponent implements OnInit {
   }
 
   createVisit(data: VisitCreationData) {
+    this.loading = true;
     const dataForRegister = data;
     dataForRegister.registrationDateTime = this.datepipe.transform(new Date(), 'yyyy-MM-ddTHH:mm:ss');
     dataForRegister.status = 'NEW';
@@ -60,14 +62,16 @@ export class VisitComponent implements OnInit {
       .subscribe(success => {
         this.showAddVisitSuccess();
         this.visitService.getVisitsForPatient();
+        this.loading = false;
       },
         (error: HttpErrorResponse) => {
           console.log(error.error.message);
         });
 
   }
+  
   showAddVisitSuccess() {
-    let snackBarRef = this.snackBar.open('The visis has been registered!');
+    let snackBarRef = this.snackBar.open('The visit has been registered!');
   }
 
 }

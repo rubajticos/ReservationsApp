@@ -34,6 +34,7 @@ import { DoctorService } from './services/doctor.service';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatInputModule,
     BrowserAnimationsModule,
     NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    MatProgressSpinnerModule
   ],
   providers: [RegisterService, LoginService, CookieService, AuthenticationService, PatientService, VisitService, HttpVisitService,
     DoctorService, DatePipe, MatSnackBar,
