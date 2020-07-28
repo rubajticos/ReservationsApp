@@ -116,6 +116,16 @@ class VisitServiceImplTest {
     }
 
     @Test
+    void createVisit_ShouldThrowExceptionWhenDateForDoctorNotFree() {
+        CreatingVisitEntityModel model = prepareCreationData();
+        given(visitRepository.existsByDateTimeAndDoctor(any(), any())).willReturn(true);
+
+        assertThrows(ResponseStatusException.class, () -> visitService.createVisit(model.visitCreationDTO));
+        verify(visitRepository).existsByDateTimeAndDoctor(any(), any());
+        verify(visitRepository, times(0)).save(any());
+    }
+
+    @Test
     void getVisitsForPatient_ShouldReturnSetOfVisitsDTO() {
         Patient p = createPatient();
         Set<Visit> visits = prepareVisits();
