@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Patient } from 'src/app/model/patient';
 import { UserRegister } from 'src/app/model/user-register';
-import { RegisterModel } from 'src/app/model/register-model';
-import { RegisterService } from 'src/app/services/register.service';
+import { RegisterModel } from 'src/app/auth/register-model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertInfoComponent } from '../../components/alertinfo/alertinfo.component';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   hideForm = false;
   displayRegisteredData = false;
 
-  constructor(private registerService: RegisterService) {}
+  constructor(private auth: AuthenticationService) {}
 
   ngOnInit() {}
 
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     this.alertInfo.clear();
     this.submitted = true;
     this.loading = true;
-    this.registerService.registerPatient(this.model).subscribe(
+    this.auth.registerPatient(this.model).subscribe(
       (success) => {
         this.loading = false;
         this.hideForm = true;

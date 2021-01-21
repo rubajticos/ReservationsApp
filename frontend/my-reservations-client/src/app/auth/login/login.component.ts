@@ -1,10 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
-import {
-  HttpErrorResponse,
-  HttpResponse,
-  HttpEvent,
-} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { AuthorizationModel } from 'src/app/auth/authorization-model';
 import { Router } from '@angular/router';
 import { timer, Subscription } from 'rxjs';

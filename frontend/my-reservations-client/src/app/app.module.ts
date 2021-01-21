@@ -9,7 +9,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MustMatchDirective } from './directives/must-match.directive';
-import { RegisterService } from './services/register.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
@@ -72,7 +71,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatProgressSpinnerModule,
   ],
   providers: [
-    RegisterService,
     CookieService,
     AuthenticationService,
     PatientService,

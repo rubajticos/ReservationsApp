@@ -5,9 +5,10 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { RegisterModel } from './register-model';
 import { AuthorizationModel } from './authorization-model';
 
 @Injectable({
@@ -15,6 +16,7 @@ import { AuthorizationModel } from './authorization-model';
 })
 export class AuthenticationService {
   readonly loginURL = environment.apiBaseUrl + 'oauth/token';
+  readonly registerURL = environment.apiBaseUrl + 'register';
   readonly cookieKey = 'auth';
 
   authData = new BehaviorSubject<AuthorizationModel>(null);
@@ -85,5 +87,9 @@ export class AuthenticationService {
     }
 
     return throwError(errorMessage);
+  }
+
+  public registerPatient(patient: RegisterModel): Observable<any> {
+    return this.http.post(this.registerURL, patient);
   }
 }
