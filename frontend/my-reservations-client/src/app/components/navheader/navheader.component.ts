@@ -24,7 +24,7 @@ export class NavheaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    console.log('Logout!');
+    this.auth.logout();
   }
 
   ngOnDestroy(): void {

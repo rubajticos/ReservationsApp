@@ -10,6 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { RegisterModel } from './register-model';
 import { AuthorizationModel } from './authorization-model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,11 @@ export class AuthenticationService {
 
   authData = new BehaviorSubject<AuthorizationModel>(null);
 
-  constructor(private cookieService: CookieService, private http: HttpClient) {}
+  constructor(
+    private cookieService: CookieService,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   login(username: string, password: string) {
     const headers = {
@@ -91,5 +96,11 @@ export class AuthenticationService {
 
   public registerPatient(patient: RegisterModel): Observable<any> {
     return this.http.post(this.registerURL, patient);
+  }
+
+  logout() {
+    this.authData.next(null);
+    this.cookieService.deleteAll();
+    this.router.navigate(['/login']);
   }
 }
