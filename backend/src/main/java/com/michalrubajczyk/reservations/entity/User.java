@@ -13,6 +13,7 @@ import java.util.Set;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"username", "password", "dateCreated", "authorities", "patient"})
+@Table(name = "users")
 public class User extends BaseEntity {
 
     @NotEmpty
