@@ -1,4 +1,4 @@
-import { UserRegister } from '../model/user-register';
+import { UserRegister } from './user-register';
 import { Patient } from '../model/patient';
 
 export class RegisterModel {
