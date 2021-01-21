@@ -11,7 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { MustMatchDirective } from './directives/must-match.directive';
 import { RegisterService } from './services/register.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from './auth/authentication.service';
 import { TokenInterceptor } from './interceptors/token-interceptor';
