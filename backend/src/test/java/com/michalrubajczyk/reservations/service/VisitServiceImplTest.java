@@ -74,7 +74,7 @@ class VisitServiceImplTest {
 
         assertThat(result.getId(), equalTo(1L));
         assertThat(result.getDateTime(), equalTo(model.visitCreationDTO.getDateTime()));
-        assertThat(result.getRegistationDateTime(), equalTo(model.visitCreationDTO.getRegistationDateTime()));
+        assertThat(result.getRegistationDateTime(), equalTo(model.visitCreationDTO.getRegistrationDateTime()));
         assertThat(result.getStatus(), equalTo(VisitStatus.REGISTERED.toString()));
         assertThat(result.getDoctor().getId(), equalTo(model.visitCreationDTO.getDoctorId()));
         assertThat(result.getPatient().getId(), equalTo(model.visitCreationDTO.getPatientId()));
@@ -113,6 +113,16 @@ class VisitServiceImplTest {
         given(visitRepository.save(any())).willThrow(ResponseStatusException.class);
 
         assertThrows(ResponseStatusException.class, () -> visitService.createVisit(model.visitCreationDTO));
+    }
+
+    @Test
+    void createVisit_ShouldThrowExceptionWhenDateForDoctorNotFree() {
+        CreatingVisitEntityModel model = prepareCreationData();
+        given(visitRepository.existsByDateTimeAndDoctor(any(), any())).willReturn(true);
+
+        assertThrows(ResponseStatusException.class, () -> visitService.createVisit(model.visitCreationDTO));
+        verify(visitRepository).existsByDateTimeAndDoctor(any(), any());
+        verify(visitRepository, times(0)).save(any());
     }
 
     @Test
@@ -180,7 +190,7 @@ class VisitServiceImplTest {
                 .dateTime(visitDate)
                 .doctorId(1L)
                 .patientId(1L)
-                .registationDateTime(now)
+                .registrationDateTime(now)
                 .status(VisitStatus.NEW.toString())
                 .build();
 

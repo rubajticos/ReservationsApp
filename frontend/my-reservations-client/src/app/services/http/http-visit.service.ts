@@ -10,6 +10,7 @@ import { Visit } from 'src/app/model/visit';
 })
 export class HttpVisitService {
 
+  readonly visitsURL = environment.apiBaseUrl + 'visit' ;
   readonly visitsForPatientURL = environment.apiBaseUrl + 'visit/patient=' ;
 
   constructor(private http: HttpClient, private patientService: PatientService) { }
@@ -17,6 +18,10 @@ export class HttpVisitService {
   public getVisitsForPatient(): Observable<Array<Visit>> {
     const patientId = this.patientService.loggedPatientId();
     return this.http.get<Array<Visit>>(this.visitsForPatientURL + patientId);
+  }
+
+  public createVisit(visit: VisitCreationData): Observable<any> {
+    return this.http.post(this.visitsURL, visit);
   }
 
 }

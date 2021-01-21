@@ -14,7 +14,7 @@ import { AlertInfoComponent } from '../alertinfo/alertinfo.component';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild(AlertInfoComponent, { static: false }) alertInfo;
+  @ViewChild(AlertInfoComponent) alertInfo;
 
   username: string;
   password: string;

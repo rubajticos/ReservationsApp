@@ -39,6 +39,10 @@ public class VisitServiceImpl implements VisitService {
     @Transactional
     public VisitDTO createVisit(VisitCreationDTO visitCreationDTO) {
         Visit visit = translateToVisitEntity(visitCreationDTO);
+
+        if (visitRepository.existsByDateTimeAndDoctor(visit.getDateTime(), visit.getDoctor()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This date for choosen doctor is not free. Try another date.");
+
         visit = visitRepository.save(visit);
 
         if (visit != null)
@@ -52,7 +56,7 @@ public class VisitServiceImpl implements VisitService {
         visit.setId(visitCreationDTO.getId());
         visit.setStatus(VisitStatus.valueOf(visitCreationDTO.getStatus()));
         visit.setDateTime(visitCreationDTO.getDateTime());
-        visit.setRegistrationDateTime(visitCreationDTO.getRegistationDateTime());
+        visit.setRegistrationDateTime(visitCreationDTO.getRegistrationDateTime());
         visit.addDoctor(findDoctor(visitCreationDTO.getDoctorId()));
         visit.addPatient(findPatient(visitCreationDTO.getPatientId()));
 
