@@ -4,12 +4,12 @@ import { UserRegister } from 'src/app/model/user-register';
 import { RegisterModel } from 'src/app/model/register-model';
 import { RegisterService } from 'src/app/services/register.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AlertInfoComponent } from '../alertinfo/alertinfo.component';
+import { AlertInfoComponent } from '../../components/alertinfo/alertinfo.component';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   @ViewChild(AlertInfoComponent) alertInfo;
@@ -23,25 +23,25 @@ export class RegisterComponent implements OnInit {
   hideForm = false;
   displayRegisteredData = false;
 
-  constructor(private registerService: RegisterService) { }
+  constructor(private registerService: RegisterService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit() {
     this.alertInfo.clear();
     this.submitted = true;
     this.loading = true;
-    this.registerService.registerPatient(this.model)
-      .subscribe(success => {
+    this.registerService.registerPatient(this.model).subscribe(
+      (success) => {
         this.loading = false;
         this.hideForm = true;
         this.showRegisterSuccess();
       },
-        (error: HttpErrorResponse) => {
-          this.loading = false;
-          this.showRegisterError(error.error.message);
-        });
+      (error: HttpErrorResponse) => {
+        this.loading = false;
+        this.showRegisterError(error.error.message);
+      }
+    );
   }
 
   private showRegisterSuccess() {
@@ -52,5 +52,4 @@ export class RegisterComponent implements OnInit {
   private showRegisterError(error: string) {
     this.alertInfo.showError(error);
   }
-
 }
