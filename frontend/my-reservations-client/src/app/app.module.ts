@@ -13,7 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from './auth/authentication.service';
-import { TokenInterceptor } from './interceptors/token-interceptor';
+import { TokenInterceptor } from './auth/token-interceptor';
 import { VisitComponent } from './components/visit/visit.component';
 import { PatientService } from './services/patient.service';
 import { HttpVisitService } from './services/http/http-visit.service';

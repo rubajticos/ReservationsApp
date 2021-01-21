@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpHandler,
 } from '@angular/common/http';
-import { AuthenticationService } from '../auth/authentication.service';
+import { AuthenticationService } from './authentication.service';
 import { Observable } from 'rxjs';
 import { exhaust, exhaustMap, take } from 'rxjs/operators';
 
