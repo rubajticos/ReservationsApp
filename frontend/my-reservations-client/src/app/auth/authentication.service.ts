@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { AuthorizationModel } from '../model/authorization-model';
+import { AuthorizationModel } from './authorization-model';
 
 @Injectable({
   providedIn: 'root',

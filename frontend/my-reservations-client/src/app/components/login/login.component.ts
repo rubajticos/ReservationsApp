@@ -5,7 +5,7 @@ import {
   HttpResponse,
   HttpEvent,
 } from '@angular/common/http';
-import { AuthorizationModel } from 'src/app/model/authorization-model';
+import { AuthorizationModel } from 'src/app/auth/authorization-model';
 import { Router } from '@angular/router';
 import { timer, Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
