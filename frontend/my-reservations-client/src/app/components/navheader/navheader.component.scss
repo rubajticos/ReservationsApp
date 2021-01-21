@@ -1,7 +1,10 @@
-@import "../../styling/variables.scss";
-
+@import '../../styling/variables.scss';
 
 .navheader {
   background: $primaryColor;
   color: #fff;
+}
+
+.logout {
+  cursor: pointer;
 }
