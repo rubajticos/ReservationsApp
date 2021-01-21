@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { AuthorizationModel } from '../model/authorization-model';
 
 @Injectable({
@@ -31,7 +32,7 @@ export class AuthenticationService {
       .set('username', username)
       .set('password', password);
 
-    this.http
+    return this.http
       .post<AuthorizationModel>(this.loginURL, body, { headers })
       .pipe(
         catchError(this.handleError),
@@ -41,23 +42,10 @@ export class AuthenticationService {
       );
   }
 
-  public saveTokens(authModel: AuthorizationModel) {
-    this.cookieService.set(this.accessTokenKey, authModel.access_token);
-    this.cookieService.set(this.refreshTokenKey, authModel.refresh_token);
-  }
-
-  public refreshToken(): string {
-    return this.cookieService.get(this.refreshTokenKey);
-  }
-
-  public accessToken(): string {
-    return this.cookieService.get(this.accessTokenKey);
-  }
-
-  public clearAuthentication(): void {
-    this.cookieService.set(this.accessTokenKey, null);
-    this.cookieService.set(this.refreshTokenKey, null);
-  }
+  // public clearAuthentication(): void {
+  //   this.cookieService.set(this.accessTokenKey, null);
+  //   this.cookieService.set(this.refreshTokenKey, null);
+  // }
 
   private handleAuthentication(auth: AuthorizationModel) {
     this.authData.next(auth);

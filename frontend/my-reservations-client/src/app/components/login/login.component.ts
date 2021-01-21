@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   countdownTimer: Subscription;
 
   constructor(
-    private loginService: LoginService,
     private authenticationService: AuthenticationService,
     private patientService: PatientService,
     private router: Router
@@ -40,11 +39,10 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.resetInfo();
     this.loading = true;
-    this.loginService.login(this.username, this.password).subscribe(
+    this.authenticationService.login(this.username, this.password).subscribe(
       (data: AuthorizationModel) => {
         this.loading = false;
         this.displayLoginSuccess();
-        this.saveTokens(data);
         this.patientService.getLoggedPatient();
         this.startRedirectCountdown();
       },
@@ -58,10 +56,6 @@ export class LoginComponent implements OnInit {
   private resetInfo(): void {
     this.displayRedirectingInfo = false;
     this.alertInfo.clear();
-  }
-
-  private saveTokens(authModel: AuthorizationModel) {
-    this.authenticationService.saveTokens(authModel);
   }
 
   private startRedirectCountdown(): void {
