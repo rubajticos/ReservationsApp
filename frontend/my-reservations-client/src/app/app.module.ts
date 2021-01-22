@@ -65,8 +65,6 @@ import { RegisterModule } from './auth/register.module';
     NgxMatNativeDateModule,
     MatProgressSpinnerModule,
     SharedModule,
-    LoginModule,
-    RegisterModule,
   ],
   providers: [
     CookieService,
