@@ -54,9 +54,12 @@ export class AuthenticationService {
   //   this.cookieService.set(this.refreshTokenKey, null);
   // }
   autologin() {
-    const authData: AuthorizationModel = JSON.parse(
-      this.cookieService.get(this.cookieKey)
-    );
+    let authData: AuthorizationModel = null;
+
+    const cookieData = this.cookieService.get(this.cookieKey);
+    if (cookieData) {
+      this.authData = JSON.parse(cookieData);
+    }
 
     if (!authData) {
       return;
