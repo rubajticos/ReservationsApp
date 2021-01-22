@@ -36,7 +36,8 @@ import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
+import { LoginModule } from './auth/login.module';
+import { RegisterModule } from './auth/register.module';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AuthModule } from './auth/auth.module';
     NgxMatNativeDateModule,
     MatProgressSpinnerModule,
     SharedModule,
-    AuthModule,
+    LoginModule,
+    RegisterModule,
   ],
   providers: [
     CookieService,

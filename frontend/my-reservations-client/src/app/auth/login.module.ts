@@ -3,13 +3,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
-  imports: [FormsModule, SharedModule, CommonModule, HttpClientModule],
+  declarations: [LoginComponent],
+  imports: [
+    FormsModule,
+    SharedModule,
+    CommonModule,
+    HttpClientModule,
+    LoginRoutingModule,
+  ],
   providers: [],
-  exports: [LoginComponent, RegisterComponent],
+  exports: [LoginComponent],
 })
-export class AuthModule {}
+export class LoginModule {}
