@@ -27,9 +27,9 @@ insert into specialization(id, name, type) values (1, 'Pediatrician', 'PEDIATRIC
 insert into specialization(id, name, type) values (2, 'Surgeon', 'SURGEON') ON CONFLICT DO NOTHING;
 
 --doctors
-INSERT ignore INTO doctor (id, uuid, first_name, last_name, specialization_id) VALUES ('1', '9a8adb14-c6c9-11ea-87d0-0242ac130003', 'Andrzej', 'Boryna', '1');
-INSERT ignore INTO doctor (id, uuid, first_name, last_name, specialization_id) VALUES ('3', '9a8ade0c-c6c9-11ea-87d0-0242ac130003', 'Marzena', 'Budziszewska', '1');
-INSERT ignore INTO doctor (id, uuid, first_name, last_name, specialization_id) VALUES ('2', '9a8add1c-c6c9-11ea-87d0-0242ac130003', 'Grzegorz', 'Dom', '2');
-INSERT ignore INTO doctor (id, uuid, first_name, last_name, specialization_id) VALUES ('4', '9a8adede-c6c9-11ea-87d0-0242ac130003', 'Renata', 'Gruzin', '2');
+INSERT INTO doctor (id, uuid, first_name, last_name, specialization_id) VALUES ('1', '9a8adb14-c6c9-11ea-87d0-0242ac130003', 'Andrzej', 'Boryna', '1') ON CONFLICT DO NOTHING;
+INSERT INTO doctor (id, uuid, first_name, last_name, specialization_id) VALUES ('3', '9a8ade0c-c6c9-11ea-87d0-0242ac130003', 'Marzena', 'Budziszewska', '1') ON CONFLICT DO NOTHING;
+INSERT INTO doctor (id, uuid, first_name, last_name, specialization_id) VALUES ('2', '9a8add1c-c6c9-11ea-87d0-0242ac130003', 'Grzegorz', 'Dom', '2') ON CONFLICT DO NOTHING;
+INSERT INTO doctor (id, uuid, first_name, last_name, specialization_id) VALUES ('4', '9a8adede-c6c9-11ea-87d0-0242ac130003', 'Renata', 'Gruzin', '2') ON CONFLICT DO NOTHING;
 
 
