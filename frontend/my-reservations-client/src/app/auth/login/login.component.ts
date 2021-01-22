@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { timer, Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
 import { PatientService } from 'src/app/services/patient.service';
-import { AlertInfoComponent } from '../../components/alertinfo/alertinfo.component';
+import { AlertInfoComponent } from 'src/app/shared/alertinfo/alertinfo.component';
 
 @Component({
   selector: 'app-login',

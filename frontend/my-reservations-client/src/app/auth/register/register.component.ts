@@ -3,8 +3,8 @@ import { Patient } from 'src/app/model/patient';
 import { UserRegister } from 'src/app/auth/user-register';
 import { RegisterModel } from 'src/app/auth/register-model';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AlertInfoComponent } from '../../components/alertinfo/alertinfo.component';
 import { AuthenticationService } from '../authentication.service';
+import { AlertInfoComponent } from 'src/app/shared/alertinfo/alertinfo.component';
 
 @Component({
   selector: 'app-register',
