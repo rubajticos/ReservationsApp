@@ -7,10 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavheaderComponent } from './components/navheader/navheader.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { MustMatchDirective } from './shared/must-match.directive';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoginComponent } from './auth/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from './auth/authentication.service';
 import { TokenInterceptor } from './auth/token-interceptor';
@@ -18,7 +15,6 @@ import { VisitComponent } from './components/visit/visit.component';
 import { PatientService } from './services/patient.service';
 import { HttpVisitService } from './services/http/http-visit.service';
 import { VisitService } from './services/visit.service';
-import { AlertInfoComponent } from './shared/alertinfo/alertinfo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddVisitComponent } from './components/add-visit/add-visit.component';
@@ -40,6 +36,7 @@ import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -47,8 +44,6 @@ import { SharedModule } from './shared/shared.module';
     NavheaderComponent,
     FooterComponent,
     PageNotFoundComponent,
-    RegisterComponent,
-    LoginComponent,
     VisitComponent,
     AddVisitComponent,
   ],
@@ -69,6 +64,7 @@ import { SharedModule } from './shared/shared.module';
     NgxMatNativeDateModule,
     MatProgressSpinnerModule,
     SharedModule,
+    AuthModule,
   ],
   providers: [
     CookieService,
