@@ -10,6 +10,11 @@ const appRoutes: Routes = [
   { path: '', component: VisitComponent, canActivate: [AuthGuard] },
   { path: 'login', loadChildren: './auth/login.module#LoginModule' },
   { path: 'visits', component: VisitComponent, canActivate: [AuthGuard] },
+  {
+    path: 'admin',
+    loadChildren: './admin/admin.module#AdminModule',
+    canActivate: [AuthGuard],
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 
