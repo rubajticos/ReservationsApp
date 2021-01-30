@@ -29,12 +29,13 @@
         [textContent]="newDoctor.lastName"
         (input)="newDoctor.lastName = $event.target.textContent"
       ></td>
-      <td
-        contenteditable="true"
-        [textContent]="newDoctor.specializationId"
-        (input)="newDoctor.specializationId = $event.target.textContent"
-      >
-        1
+      <td>
+        <select name="specializations" id="specializations">
+          <option value="">Choose specialization</option>
+          <option *ngFor="let spec of specializations" value="spec.id">
+            {{ spec.name }}
+          </option>
+        </select>
       </td>
       <td>
         <button

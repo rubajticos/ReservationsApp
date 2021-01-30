@@ -8,6 +8,8 @@ export class DoctorCreateDTO {
   constructor() {}
 
   public isValid() {
+    console.log(JSON.stringify(this));
+
     return (
       this.firstName &&
       this.firstName.trim() &&
